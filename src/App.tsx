@@ -1,4 +1,4 @@
-import Start from './Pages/Start';
+import Start from '@/Pages/Start';
 
 const App = () => {
   return (

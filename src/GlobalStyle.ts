@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import font from './assets/fonts/RixInooAriDuri Regular.ttf';
+import font from '@/assets/fonts/RixInooAriDuri Regular.ttf';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'DNFBitBitv2', sans-serif;
+    font-family: 'RixInooAriDuri Regular', sans-serif;
     background-color: #000;
     color: #fff;
   }
