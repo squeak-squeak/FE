@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+.app-wrapper {
+    width: 100%;
+    max-width: 767px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: white;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: black;
+}
+
+.header2 {
+    font-size: 18px;
+    color: #666;
+}
+
+.image-container {
+    margin: 20px 0;
+}
+
+.hamster-image {
+    width: 350px;
+    height: auto;
+    object-fit: cover;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+.kakao-button {
+    width: 80%;
+    background-color: #fee500;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.naver-button {
+    width: 80%;
+    background-color: #03c75a;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.google-button {
+    width: 80%;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
