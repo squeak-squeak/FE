@@ -7,8 +7,7 @@ const Header = () => {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 767px;
-    position: relative;
+    padding: 10px;
   `;
 
   const headerLeftStyle = css`

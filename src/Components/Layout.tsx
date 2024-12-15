@@ -1,15 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  // 글로벌 스타일
+interface LayoutProps {
+  children: React.ReactNode;
+  isHome?: boolean; // Home 페이지인지 확인
+}
+
+const Layout = ({ children, isHome = false }: LayoutProps) => {
   const globalStyle = css`
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     html,
     body {
       height: 100%;
@@ -20,29 +23,28 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const containerStyle = css`
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: white;
-  `;
-
-  const appWrapperStyle = css`
-    width: 100%;
-    max-width: 767px;
-    min-height: 100vh;
-    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: white;
-    overflow-y: auto;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: ${isHome ? '#FFEFB8' : 'white'};
+    border-left: 3px solid #EFEFEF;
+    border-right: 3px solid #EFEFEF;
+  `;
+
+
+  const contentStyle = css`
+    width: 100%;
+    max-width: 375px;
+    flex: 1;
   `;
 
   return (
-    <div css={[globalStyle, containerStyle]}>
-      <div css={appWrapperStyle}>{children}</div>
+    <div css={globalStyle}>
+      <div css={containerStyle}>
+        <div css={contentStyle}>{children}</div>
+      </div>
     </div>
   );
 };

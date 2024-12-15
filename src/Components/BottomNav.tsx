@@ -12,7 +12,7 @@ const BottomNav = () => {
     position: fixed;
     bottom: 0;
     width: 100%;
-    max-width: 767px;
+    max-width: 375px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;

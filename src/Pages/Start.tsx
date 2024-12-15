@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
+import Layout from '@/Components/Layout';
 
 const Start = () => {
   const navigate = useNavigate();
@@ -12,6 +13,8 @@ const Start = () => {
   const headerStyle = css`
     width: 100%;
     margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
   `;
 
   const headerTopStyle = css`
@@ -61,7 +64,7 @@ const Start = () => {
     gap: 20px;
     width: 100%;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 20%;
 
     @media (max-width: 768px) {
       gap: 10px;
@@ -79,7 +82,7 @@ const Start = () => {
   `;
 
   return (
-    <>
+    <Layout>
       <div css={headerStyle}>
         <div css={headerTopStyle}>
           <img src="/cheese.png" alt="로고" css={cheeseImageStyle} />
@@ -112,7 +115,7 @@ const Start = () => {
           css={loginButtonStyle}
         />
       </div>
-    </>
+    </Layout>
   );
 };
 
