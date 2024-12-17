@@ -22,6 +22,7 @@ const Layout = ({ children, isHome = false }: LayoutProps) => {
   `;
 
   const containerStyle = css`
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
