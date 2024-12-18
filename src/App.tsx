@@ -3,6 +3,7 @@ import Layout from '@/Components/Layout';
 import Start from '@/Pages/Start';
 import Home from '@/Pages/Home';
 import GroupList from '@/Pages/GroupList';
+import VoteResult from './Pages/VoteResult';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
           <Route path="/" element={<Start />} />
           <Route path="/home" element={<Home />} />
           <Route path="/grouplist" element={<GroupList />} />
+          <Route path="/voteresult" element={<VoteResult />} />
         </Routes>
       </Layout>
     </Router>

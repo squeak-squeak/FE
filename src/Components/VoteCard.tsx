@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 
 interface VoteCardProps {
   groupImage: string;
@@ -79,8 +80,16 @@ const VoteCard = ({
   isCompleted = false,
   isClosed = false,
 }: VoteCardProps) => {
+  const navigate = useNavigate();
+
   let buttonLabel = '투표 하기';
   let isDisabled = false;
+
+  const handleButtonClick = () => {
+    if (isClosed) {
+      navigate('/voteresult'); // 투표 결과 페이지로 이동
+    }
+  };
 
   if (isCompleted) {
     buttonLabel = '투표 완료';
@@ -101,7 +110,12 @@ const VoteCard = ({
         {peopleCount && <span css={peopleCountStyle}>{peopleCount}</span>}
       </div>
       <div css={questionStyle}>{question}</div>
-      <div css={buttonStyle(isDisabled)}>{buttonLabel}</div>
+      <div
+        css={buttonStyle(isDisabled)}
+        onClick={!isDisabled ? handleButtonClick : undefined}
+      >
+        {buttonLabel}
+      </div>
     </div>
   );
 };
