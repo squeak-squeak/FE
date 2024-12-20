@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '@/Components/Layout';
 import Header from '@/Components/Header';
 import BottomNav from '@/Components/BottomNav';
@@ -9,6 +10,7 @@ interface GroupCardProps {
     groupImage: string;
     groupName: string;
     isOwner: boolean; // 방장 여부
+    onClick: () => void; // 클릭 핸들러
 }
 
 const pageWrapperStyle = css`
@@ -80,6 +82,7 @@ const groupCardStyle = css`
     background: white;
     border: 2px solid #EFEFEF;
     border-radius: 10px;
+    cursor: pointer;
     img {
         width: 80px;
         height: 80px;
@@ -110,14 +113,15 @@ const addButtonStyle = css`
     z-index: 10;
 `;
 
-const GroupCard = ({ groupImage, groupName }: GroupCardProps) => (
-    <div css={groupCardStyle}>
+const GroupCard = ({ groupImage, groupName, onClick }: GroupCardProps) => (
+    <div css={groupCardStyle} onClick={onClick}>
         <img src={groupImage} alt={groupName} />
         <span>{groupName}</span>
     </div>
 );
 
 const GroupList = () => {
+    const navigate = useNavigate();
     const [filter, setFilter] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -181,6 +185,7 @@ const GroupList = () => {
                         groupImage={group.groupImage}
                         groupName={group.groupName}
                         isOwner={group.isOwner}
+                        onClick={() => navigate('/groupdetail')}
                     />
                     ))}
                 </div>
