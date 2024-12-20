@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '@/Components/Layout';
 import Header from '@/Components/Header';
 import BottomNav from '@/Components/BottomNav';
+import InvitationModal from '@/Components/InvitationModal';
+import PendingModal from '@/Components/pendingModal';
 
 const pageWrapperStyle = css`
   display: flex;
@@ -89,6 +91,7 @@ const badgeStyle = css`
   justify-content: center;
   margin-bottom: 10px;
   margin-left: 5px;
+  cursor: pointer;
 `;
 
 const paginationStyle = css`
@@ -184,6 +187,8 @@ const GroupDetail = () => {
   const [isOwner] = useState(true); // 방장 여부
   const [pendingCount] = useState(3); // 초대 대기 인원 수
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [isModalOpen, setIsModalOpen] = useState(false); // 초대 모달 상태
+  const [isPendingModalOpen, setIsPendingModalOpen] = useState(false); // 승인 대기 모달 상태
 
   const members = Array(26).fill({ name: '구성원', image: '/profile.png' }); // 더미 데이터
   const membersPerPage = 9;
@@ -196,6 +201,12 @@ const GroupDetail = () => {
   ];
 
   const completedVotes = Array(3).fill({ question: '완료된 투표 질문입니다.' });
+
+  const pendingRequests = [
+    '그룹 E의 김아무개가 가입 승인 요청을 보냈습니다.',
+    '그룹 F의 이아무개가 가입 승인 요청을 보냈습니다.',
+    '그룹 G의 박아무개가 가입 승인 요청을 보냈습니다.',
+  ];
 
   const handleSwipe = (direction: number) => {
     setCurrentPage((prevPage) => {
@@ -273,6 +284,7 @@ const GroupDetail = () => {
               borderRadius: '15px',
               color: 'white',
             }}
+            onClick={() => setIsModalOpen(true)}
           >
             그룹 초대하기
           </button>
@@ -281,7 +293,12 @@ const GroupDetail = () => {
             <div css={{ display: 'flex', alignItems: 'center' }}>
               <span css={titleStyle}>그룹 구성원</span>
               {isOwner && pendingCount > 0 && (
-                <div css={{ ...badgeStyle }}>{pendingCount}</div>
+                <div
+                  css={{ ...badgeStyle }}
+                  onClick={() => setIsPendingModalOpen(true)}
+                >
+                  {pendingCount}
+                </div>
               )}
             </div>
             <div css={memberListWrapperStyle}>
@@ -347,6 +364,8 @@ const GroupDetail = () => {
             </div>
           </div>
         </div>
+        {isModalOpen && <InvitationModal groupName="그룹A" inviteCode="초대코드초대코드" onClose={() => setIsModalOpen(false)} />}  
+        {isPendingModalOpen && <PendingModal onClose={() => setIsPendingModalOpen(false)} pendingRequests={pendingRequests} />}
         <BottomNav />
       </div>
     </Layout>
