@@ -6,7 +6,7 @@ import Layout from '@/Components/Layout';
 import Header from '@/Components/Header';
 import BottomNav from '@/Components/BottomNav';
 import InvitationModal from '@/Components/InvitationModal';
-import PendingModal from '@/Components/pendingModal';
+import PendingModal from '@/Components/PendingModal';
 
 const pageWrapperStyle = css`
   display: flex;
@@ -80,7 +80,7 @@ const memberStyle = css`
 `;
 
 const badgeStyle = css`
-  background-color: #FFD43B;
+  background-color: #ffd43b;
   color: white;
   font-size: 12px;
   border-radius: 50%;
@@ -100,7 +100,7 @@ const paginationStyle = css`
   color: #7b7b7b;
   margin-top: 10px;
 
-  button  {
+  button {
     border: none;
     background-color: transparent;
     padding: 5px;
@@ -118,7 +118,7 @@ const voteCardStyle = css`
   align-items: center;
   padding: 10px;
   border-radius: 20px;
-  background-color: #F2F2F1;
+  background-color: #f2f2f1;
   margin-bottom: 10px;
   color: black;
   font-size: 15px;
@@ -195,9 +195,24 @@ const GroupDetail = () => {
   const totalPages = Math.ceil(members.length / membersPerPage);
 
   const ongoingVotes = [
-    { question: '진행 중인 투표 질문입니다.', progress: '3/8', stabbing: false, completed: false },
-    { question: '진행 중인 투표 질문입니다.', progress: '3/8', stabbing: true, completed: true },
-    { question: '진행 중인 투표 질문입니다.', progress: '3/8', stabbing: false, completed: false },
+    {
+      question: '진행 중인 투표 질문입니다.',
+      progress: '3/8',
+      stabbing: false,
+      completed: false
+    },
+    {
+      question: '진행 중인 투표 질문입니다.',
+      progress: '3/8',
+      stabbing: true,
+      completed: true
+    },
+    {
+      question: '진행 중인 투표 질문입니다.',
+      progress: '3/8',
+      stabbing: false,
+      completed: false
+    }
   ];
 
   const completedVotes = Array(3).fill({ question: '완료된 투표 질문입니다.' });
@@ -205,7 +220,7 @@ const GroupDetail = () => {
   const pendingRequests = [
     '그룹 E의 김아무개가 가입 승인 요청을 보냈습니다.',
     '그룹 F의 이아무개가 가입 승인 요청을 보냈습니다.',
-    '그룹 G의 박아무개가 가입 승인 요청을 보냈습니다.',
+    '그룹 G의 박아무개가 가입 승인 요청을 보냈습니다.'
   ];
 
   const handleSwipe = (direction: number) => {
@@ -221,27 +236,46 @@ const GroupDetail = () => {
       <div css={pageWrapperStyle}>
         <Header />
         <div css={contentWrapperStyle}>
-          <div css={{ display: 'flex', alignItems: 'center', marginBottom: 20 }}>
+          <div
+            css={{ display: 'flex', alignItems: 'center', marginBottom: 20 }}>
             <button
-              css={{ marginRight: 10, fontSize: '20px', cursor: 'pointer', border: 'none', backgroundColor: 'transparent' }}
-              onClick={() => navigate(-1)}
-            >
+              css={{
+                marginRight: 10,
+                fontSize: '20px',
+                cursor: 'pointer',
+                border: 'none',
+                backgroundColor: 'transparent'
+              }}
+              onClick={() => navigate(-1)}>
               &lt;
             </button>
-            <h2 css={{ fontSize: '20px', color: 'black', flex: 1, display: 'flex', justifyContent: 'center' }}>그룹A</h2>
+            <h2
+              css={{
+                fontSize: '20px',
+                color: 'black',
+                flex: 1,
+                display: 'flex',
+                justifyContent: 'center'
+              }}>
+              그룹A
+            </h2>
             {isOwner && <span css={editableIconStyle}>✏️</span>}
           </div>
 
           <div css={bannerStyle}>
             그룹 대표 이미지
-            {isOwner && 
-              <span css={{
+            {isOwner && (
+              <span
+                css={{
                   position: 'absolute',
                   bottom: '5px',
                   right: '10px',
                   cursor: 'pointer',
-                  fontSize: '16px',
-              }}>✏️</span>}
+                  fontSize: '16px'
+                }}>
+                ✏️
+              </span>
+            )}
           </div>
 
           <div css={sectionStyle}>
@@ -253,10 +287,11 @@ const GroupDetail = () => {
                 backgroundColor: '#F2F2F1',
                 padding: '10px',
                 marginBottom: '10px',
-                height: 150,
-              }}
-            >
-              <p css={{ color: 'gray', margin: 0 }}>그룹을 간략하게 설명해주세요</p>
+                height: 150
+              }}>
+              <p css={{ color: 'gray', margin: 0 }}>
+                그룹을 간략하게 설명해주세요
+              </p>
               {isOwner && (
                 <span
                   css={{
@@ -264,9 +299,8 @@ const GroupDetail = () => {
                     bottom: '5px',
                     right: '10px',
                     cursor: 'pointer',
-                    fontSize: '16px',
-                  }}
-                >
+                    fontSize: '16px'
+                  }}>
                   ✏️
                 </span>
               )}
@@ -282,10 +316,9 @@ const GroupDetail = () => {
               backgroundColor: '#FFD43B',
               border: 'none',
               borderRadius: '15px',
-              color: 'white',
+              color: 'white'
             }}
-            onClick={() => setIsModalOpen(true)}
-          >
+            onClick={() => setIsModalOpen(true)}>
             그룹 초대하기
           </button>
 
@@ -295,15 +328,17 @@ const GroupDetail = () => {
               {isOwner && pendingCount > 0 && (
                 <div
                   css={{ ...badgeStyle }}
-                  onClick={() => setIsPendingModalOpen(true)}
-                >
+                  onClick={() => setIsPendingModalOpen(true)}>
                   {pendingCount}
                 </div>
               )}
             </div>
             <div css={memberListWrapperStyle}>
               {members
-                .slice((currentPage - 1) * membersPerPage, currentPage * membersPerPage)
+                .slice(
+                  (currentPage - 1) * membersPerPage,
+                  currentPage * membersPerPage
+                )
                 .map((member, index) => (
                   <div key={index} css={memberStyle}>
                     <img src={member.image} alt={member.name} />
@@ -313,11 +348,25 @@ const GroupDetail = () => {
             </div>
 
             <div css={paginationStyle}>
-              <button css={{ border: 'none', background: 'none', cursor: 'pointer', fontWeight: 'bold' }} onClick={() => handleSwipe(-1)}>
+              <button
+                css={{
+                  border: 'none',
+                  background: 'none',
+                  cursor: 'pointer',
+                  fontWeight: 'bold'
+                }}
+                onClick={() => handleSwipe(-1)}>
                 &lt;
               </button>
               {currentPage}/{totalPages}
-              <button css={{ border: 'none', background: 'none', cursor: 'pointer', fontWeight: 'bold' }} onClick={() => handleSwipe(1)}>
+              <button
+                css={{
+                  border: 'none',
+                  background: 'none',
+                  cursor: 'pointer',
+                  fontWeight: 'bold'
+                }}
+                onClick={() => handleSwipe(1)}>
                 &gt;
               </button>
             </div>
@@ -327,7 +376,9 @@ const GroupDetail = () => {
             <div css={titleStyle}>진행 중인 투표</div>
             {ongoingVotes.map((vote, index) => (
               <div key={index} css={voteCardStyle}>
-                <span css={questionStyle}>{truncateText(vote.question, 12)}</span>
+                <span css={questionStyle}>
+                  {truncateText(vote.question, 12)}
+                </span>
                 <div css={progressWrapperStyle}>
                   <img
                     src={vote.stabbing ? '/stabbing.png' : '/no_stabbing.png'}
@@ -353,8 +404,7 @@ const GroupDetail = () => {
                 <span>{vote.question}</span>
                 <button
                   css={buttonStyle(false)}
-                  onClick={() => navigate('/voteresult')}
-                >
+                  onClick={() => navigate('/voteresult')}>
                   결과 보기
                 </button>
               </div>
@@ -364,8 +414,19 @@ const GroupDetail = () => {
             </div>
           </div>
         </div>
-        {isModalOpen && <InvitationModal groupName="그룹A" inviteCode="초대코드초대코드" onClose={() => setIsModalOpen(false)} />}  
-        {isPendingModalOpen && <PendingModal onClose={() => setIsPendingModalOpen(false)} pendingRequests={pendingRequests} />}
+        {isModalOpen && (
+          <InvitationModal
+            groupName="그룹A"
+            inviteCode="초대코드초대코드"
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
+        {isPendingModalOpen && (
+          <PendingModal
+            onClose={() => setIsPendingModalOpen(false)}
+            pendingRequests={pendingRequests}
+          />
+        )}
         <BottomNav />
       </div>
     </Layout>
