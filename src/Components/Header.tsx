@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const Header = () => {
+const Header = ({ isShowInviteIcon = true }) => {
   const headerStyle = css`
     display: flex;
     justify-content: space-between;
@@ -47,7 +47,9 @@ const Header = () => {
         <span css={headerTitleStyle}>찍찍</span>
       </div>
       <div css={headerRightStyle}>
-        <img src="/invite.png" alt="초대코드" css={headerIconStyle} />
+        {isShowInviteIcon && (
+          <img src="/invite.png" alt="초대코드" css={headerIconStyle} />
+        )}
         <img src="/bell.png" alt="알림" css={headerIconStyle} />
       </div>
     </header>

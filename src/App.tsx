@@ -5,6 +5,7 @@ import Home from '@/Pages/Home';
 import GroupList from '@/Pages/GroupList';
 import VoteResult from './Pages/VoteResult';
 import GroupDetail from './Pages/GroupDetail';
+import Notification from '@/Pages/Notification';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/grouplist" element={<GroupList />} />
           <Route path="/voteresult" element={<VoteResult />} />
           <Route path="/groupdetail" element={<GroupDetail />} />
+          <Route path="/notification" element={<Notification />} />
         </Routes>
       </Layout>
     </Router>
