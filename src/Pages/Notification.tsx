@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import Header from '@/Components/Header';
 import { css } from '@emotion/react';
-import { ChevronLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import BackHead from '@/Components/Common/BackHead';
 
 const data = [
   '그룹 A의 [몇 번째 투표]에서 5표를 획득했습니다!',
@@ -29,24 +28,6 @@ const container = css`
   justify-content: space-between;
   height: 100%;
   position: relative;
-`;
-
-const backNavBox = css`
-  display: flex;
-  align-items: center;
-  margin-top: 32px;
-  position: relative;
-  margin-bottom: 42px;
-`;
-
-const title = css`
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
-  font-size: 30px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 const notiContainer = css`
@@ -88,25 +69,11 @@ const button = css`
 `;
 
 export default function Notification() {
-  const navigation = useNavigate();
-
-  const navBack = () => {
-    navigation(-1);
-  };
-
   return (
     <>
       <Header isShowInviteIcon={false} />
       <div css={container}>
-        <div css={backNavBox}>
-          <ChevronLeft
-            size="30px"
-            color="black" // 이거 없어져야함
-            css={{ cursor: 'pointer' }}
-            onClick={navBack}
-          />
-          <h1 css={title}>알림</h1>
-        </div>
+        <BackHead title="알림" />
 
         <div css={notiContainer}>
           {data.map((item) => (

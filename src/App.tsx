@@ -6,6 +6,7 @@ import GroupList from '@/Pages/GroupList';
 import VoteResult from './Pages/VoteResult';
 import GroupDetail from './Pages/GroupDetail';
 import Notification from '@/Pages/Notification';
+import NewVote from '@/Pages/newVote';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/voteresult" element={<VoteResult />} />
           <Route path="/groupdetail" element={<GroupDetail />} />
           <Route path="/notification" element={<Notification />} />
+          <Route path="/new-vote" element={<NewVote />} />
         </Routes>
       </Layout>
     </Router>
