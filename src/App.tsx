@@ -6,7 +6,7 @@ import GroupList from '@/Pages/GroupList';
 import VoteResult from './Pages/VoteResult';
 import GroupDetail from './Pages/GroupDetail';
 import Notification from '@/Pages/Notification';
-import NewVote from '@/Pages/newVote';
+import NewVote from '@/Pages/NewVote';
 
 const App = () => {
   return (
