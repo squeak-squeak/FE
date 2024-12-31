@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +15,7 @@ const cardStyle = css`
   padding: 20px;
   background-color: white;
   border-radius: 15px;
-  border: 2px solid #EFEFEF;
+  border: 2px solid #efefef;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,7 +77,7 @@ const VoteCard = ({
   question,
   peopleCount,
   isCompleted = false,
-  isClosed = false,
+  isClosed = false
 }: VoteCardProps) => {
   const navigate = useNavigate();
 
@@ -112,8 +111,7 @@ const VoteCard = ({
       <div css={questionStyle}>{question}</div>
       <div
         css={buttonStyle(isDisabled)}
-        onClick={!isDisabled ? handleButtonClick : undefined}
-      >
+        onClick={!isDisabled ? handleButtonClick : undefined}>
         {buttonLabel}
       </div>
     </div>

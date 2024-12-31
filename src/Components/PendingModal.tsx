@@ -1,7 +1,5 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import React, { useState } from 'react';
-
 
 const modalWrapperStyle = css`
   position: fixed;
@@ -47,7 +45,7 @@ const headerStyle = css`
 const listItemStyle = css`
   padding: 10px;
   border-radius: 10px;
-  background: #F2F2F1;
+  background: #f2f2f1;
   margin-bottom: 10px;
   cursor: pointer;
   color: black;
@@ -92,7 +90,10 @@ interface PendingModalProps {
   onClose: () => void;
 }
 
-const PendingModal: React.FC<PendingModalProps> = ({ pendingRequests, onClose }) => {
+const PendingModal: React.FC<PendingModalProps> = ({
+  pendingRequests,
+  onClose
+}) => {
   const [activeRequest, setActiveRequest] = useState<string | null>(null);
 
   return (
@@ -106,8 +107,9 @@ const PendingModal: React.FC<PendingModalProps> = ({ pendingRequests, onClose })
           <div
             key={index}
             css={[listItemStyle, activeRequest === request && activeItemStyle]}
-            onClick={() => setActiveRequest(request === activeRequest ? null : request)}
-          >
+            onClick={() =>
+              setActiveRequest(request === activeRequest ? null : request)
+            }>
             {activeRequest === request ? (
               <div css={buttonWrapperStyle}>
                 <button css={approveButtonStyle}>승인</button>

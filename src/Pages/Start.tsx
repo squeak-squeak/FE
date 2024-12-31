@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/Components/Layout';
@@ -40,7 +39,7 @@ const Start = () => {
   const highlightTextStyle = css`
     font-size: 40px;
     font-weight: bold;
-    color: #FFCB10;
+    color: #ffcb10;
     cursor: pointer;
   `;
 

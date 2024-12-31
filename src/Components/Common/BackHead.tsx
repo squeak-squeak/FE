@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';

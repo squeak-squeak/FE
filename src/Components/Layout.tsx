@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
 interface LayoutProps {
@@ -30,10 +29,9 @@ const Layout = ({ children, isHome = false }: LayoutProps) => {
     min-height: 100vh;
     width: 100%;
     background-color: ${isHome ? '#FFEFB8' : 'white'};
-    border-left: 3px solid #EFEFEF;
-    border-right: 3px solid #EFEFEF;
+    border-left: 3px solid #efefef;
+    border-right: 3px solid #efefef;
   `;
-
 
   const contentStyle = css`
     width: 100%;

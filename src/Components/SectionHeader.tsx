@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
 const headerStyle = css`
@@ -7,7 +6,7 @@ const headerStyle = css`
   color: black;
 
   strong {
-    color: #FFD43B;
+    color: #ffd43b;
   }
 `;
 

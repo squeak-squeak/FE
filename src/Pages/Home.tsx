@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Layout from '@/Components/Layout';
 import Header from '@/Components/Header';
@@ -34,7 +33,7 @@ const contentStyle = css`
 
   strong {
     font-size: 17px;
-    color: #FF7F48;
+    color: #ff7f48;
   }
 `;
 
@@ -82,24 +81,24 @@ const sliderStyle = css`
   }
 `;
 
-
-
-
 const Home = () => {
   return (
     <Layout isHome={true}>
       <Header />
-      <div css={css`
-        padding: 20px;
-        margin-bottom: 20px;
-      `}>
+      <div
+        css={css`
+          padding: 20px;
+          margin-bottom: 20px;
+        `}>
         <div css={greetingStyle}>000님, 안녕하세요!</div>
         <div css={bannerStyle}>
           <img src="/home.png" alt="홈 이미지" width="150px" />
           <div css={contentAndButtonStyle}>
             <div css={contentStyle}>
               <p>누구를 찍어볼까?</p>
-              <p><strong>익명투표, </strong>지금 시작해요!</p>
+              <p>
+                <strong>익명투표, </strong>지금 시작해요!
+              </p>
             </div>
             <div css={plusButtonStyle}>+</div>
           </div>
@@ -134,9 +133,7 @@ const Home = () => {
           />
         </div>
 
-        <SectionHeader>
-          오늘 마감된 투표
-        </SectionHeader>
+        <SectionHeader>오늘 마감된 투표</SectionHeader>
         <div css={sliderStyle}>
           <VoteCard
             groupImage="/group.png"

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -90,7 +89,11 @@ interface GroupInvitationModalProps {
   onClose: () => void;
 }
 
-const InvitationModal: React.FC<GroupInvitationModalProps> = ({ groupName, inviteCode, onClose }) => {
+const InvitationModal: React.FC<GroupInvitationModalProps> = ({
+  groupName,
+  inviteCode,
+  onClose
+}) => {
   const navigate = useNavigate();
 
   const handleCopyCode = () => {
@@ -117,8 +120,7 @@ const InvitationModal: React.FC<GroupInvitationModalProps> = ({ groupName, invit
             onClick={() => {
               onClose();
               navigate(-1);
-            }}
-          >
+            }}>
             확인
           </button>
         </div>
