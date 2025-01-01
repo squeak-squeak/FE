@@ -173,7 +173,7 @@ const VoteResult = () => {
             <span className="name">{topResults[0].name}</span>
           </div>
           <div css={rankStyle(320)}>
-            <span className="rank">1sttttttttttttttt</span>
+            <span className="rank">1st</span>
             <div className="votes">{topResults[0].votes}표</div>
           </div>
         </div>
