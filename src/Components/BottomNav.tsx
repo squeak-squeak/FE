@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
+import { theme } from '@/Style/theme';
 
 const BottomNav = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const BottomNav = () => {
     cursor: pointer;
 
     &:hover .navLabel {
-      color: #ff7f48;
+      color: ${theme.colors.orange};
     }
   `;
 

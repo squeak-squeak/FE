@@ -6,6 +6,7 @@ import Header from '@/Components/Header';
 import BottomNav from '@/Components/BottomNav';
 import InvitationModal from '@/Components/InvitationModal';
 import PendingModal from '@/Components/PendingModal';
+import { theme } from '@/Style/theme';
 
 const pageWrapperStyle = css`
   display: flex;
@@ -79,7 +80,7 @@ const memberStyle = css`
 `;
 
 const badgeStyle = css`
-  background-color: #ffd43b;
+  background-color: ${theme.colors.yellow};
   color: white;
   font-size: 12px;
   border-radius: 50%;
@@ -312,7 +313,7 @@ const GroupDetail = () => {
               marginBottom: 20,
               marginLeft: 'auto',
               padding: '10px 20px',
-              backgroundColor: '#FFD43B',
+              backgroundColor: theme.colors.yellow,
               border: 'none',
               borderRadius: '15px',
               color: 'white'

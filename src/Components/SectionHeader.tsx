@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { theme } from '@/Style/theme';
 
 const headerStyle = css`
   font-size: 18px;
@@ -6,7 +7,7 @@ const headerStyle = css`
   color: black;
 
   strong {
-    color: #ffd43b;
+    color: ${theme.colors.yellow};
   }
 `;
 

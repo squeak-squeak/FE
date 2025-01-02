@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import React, { useState } from 'react';
+import { theme } from '@/Style/theme';
 
 const modalWrapperStyle = css`
   position: fixed;
@@ -53,7 +54,7 @@ const listItemStyle = css`
 
 const activeItemStyle = css`
   background: #fff4cc;
-  border: 1px solid #ffd43b;
+  border: 1px solid ${theme.colors.yellow};
   display: flex;
   justify-content: space-between;
   align-items: center;

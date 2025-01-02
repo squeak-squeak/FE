@@ -4,6 +4,7 @@ import Header from '@/Components/Header';
 import BottomNav from '@/Components/BottomNav';
 import VoteCard from '@/Components/VoteCard';
 import SectionHeader from '@/Components/SectionHeader';
+import { theme } from '@/Style/theme';
 
 const greetingStyle = css`
   font-size: 20px;
@@ -33,7 +34,7 @@ const contentStyle = css`
 
   strong {
     font-size: 17px;
-    color: #ff7f48;
+    color: ${theme.colors.orange};
   }
 `;
 

@@ -2,6 +2,7 @@ import Header from '@/Components/Header';
 import { css } from '@emotion/react';
 import BackHead from '@/Components/Common/BackHead';
 import { useState } from 'react';
+import { theme } from '@/Style/theme';
 
 const container = css`
   display: flex;
@@ -65,7 +66,7 @@ const checkboxButton = css`
 const button = css`
   width: 100%;
   color: white;
-  background-color: #ffd43b;
+  background-color: ${theme.colors.yellow};
   font-family: Arial, Helvetica, sans-serif;
   border: none;
   padding: 14px 0;
