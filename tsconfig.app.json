@@ -30,5 +30,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"]
+    /* 타입선언 폴더 추가(@types) */
+  "include": ["@types", "src"]
 }
