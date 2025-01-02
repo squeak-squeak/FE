@@ -79,7 +79,7 @@ export default function NewVote() {
   const handleChecked = () => {
     setIsChecked((prev) => !prev);
   };
-
+  console.log(isChecked);
   return (
     <>
       <Header />
@@ -90,8 +90,8 @@ export default function NewVote() {
         <div css={container}>
           <div css={contentBox}>
             <h6 css={contentLabel}>그룹 선택</h6>
-            <select css={selectStyle}>
-              <option disabled hidden selected>
+            <select css={selectStyle} defaultValue={'플레이스홀더'}>
+              <option disabled hidden>
                 플레이스홀더
               </option>
               <option css={optionStyle}>asdf</option>
@@ -106,7 +106,7 @@ export default function NewVote() {
             />
             <div css={checkboxContainer}>
               <button css={checkboxButton} onClick={handleChecked}>
-                <input type="checkbox" checked={isChecked} />
+                <input type="checkbox" checked={isChecked} readOnly />
                 <span>익명 생성</span>
               </button>
             </div>
