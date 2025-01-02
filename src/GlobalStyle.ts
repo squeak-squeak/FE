@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from '@emotion/react';
 import font from '@/assets/fonts/RixInooAriDuri Regular.ttf';
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = css`
   @font-face {
     font-family: 'RixInooAriDuri Regular';
     src: url(${font}) format('truetype');

@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
-import GlobalStyle from './GlobalStyle';
+import { Global } from '@emotion/react';
+import GlobalStyle from '@/GlobalStyle';
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -8,7 +9,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <>
-    <GlobalStyle />
+    <Global styles={GlobalStyle} />
     <App />
   </>
 );
