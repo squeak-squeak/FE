@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from '@/Components/Layout';
+import Layout from '@/Components/Common/Layout';
 import Start from '@/Pages/Start';
 import Home from '@/Pages/Home';
 import GroupList from '@/Pages/GroupList';
@@ -27,3 +27,5 @@ const App = () => {
 };
 
 export default App;
+
+// Todo: 교진님 BackHead.tsx컴포넌트 활용해서 페이지 폴더에 있는 파일들 수정해주세요

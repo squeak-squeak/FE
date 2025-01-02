@@ -1,4 +1,3 @@
-import Header from '@/Components/Header';
 import { css } from '@emotion/react';
 import BackHead from '@/Components/Common/BackHead';
 
@@ -70,7 +69,6 @@ const button = css`
 export default function Notification() {
   return (
     <>
-      <Header isShowInviteIcon={false} />
       <div css={container}>
         <BackHead title="알림" />
 
@@ -95,8 +93,3 @@ export default function Notification() {
     </>
   );
 }
-
-// Todo: header 페이지마다 안넣게
-// layout에 오른쪽 왼쪽 회색 경계선 만들기
-// 기본 세팅된 폰트와 폰트색깔 수정
-// 스크롤 처리

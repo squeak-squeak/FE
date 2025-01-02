@@ -1,9 +1,6 @@
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Layout from '@/Components/Layout';
-import Header from '@/Components/Header';
-import BottomNav from '@/Components/BottomNav';
 
 interface GroupCardProps {
   groupImage: string;
@@ -146,55 +143,49 @@ const GroupList = () => {
   });
 
   return (
-    <Layout>
-      <div css={pageWrapperStyle}>
-        <Header />
+    <div css={pageWrapperStyle}>
+      <div css={contentWrapperStyle}>
+        <h2 css={{ textAlign: 'center', margin: '10px 0', color: 'black' }}>
+          그룹 리스트
+        </h2>
 
-        <div css={contentWrapperStyle}>
-          <h2 css={{ textAlign: 'center', margin: '10px 0', color: 'black' }}>
-            그룹 리스트
-          </h2>
-
-          <div css={searchContainerStyle}>
-            <div css={searchBarStyle}>
-              <input
-                type="text"
-                placeholder="그룹명을 검색하세요"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)} // 검색어 변경
-              />
-              <button>🔍</button>
-            </div>
-
-            <div css={dropdownStyle}>
-              <select
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)} // 드롭다운 값 변경
-              >
-                <option value="all">전체</option>
-                <option value="owner">내가 방장인 그룹</option>
-              </select>
-            </div>
+        <div css={searchContainerStyle}>
+          <div css={searchBarStyle}>
+            <input
+              type="text"
+              placeholder="그룹명을 검색하세요"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)} // 검색어 변경
+            />
+            <button>🔍</button>
           </div>
 
-          <div css={gridStyle}>
-            {filteredGroups.map((group) => (
-              <GroupCard
-                key={group.groupName}
-                groupImage={group.groupImage}
-                groupName={group.groupName}
-                isOwner={group.isOwner}
-                onClick={() => navigate('/groupdetail')}
-              />
-            ))}
+          <div css={dropdownStyle}>
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)} // 드롭다운 값 변경
+            >
+              <option value="all">전체</option>
+              <option value="owner">내가 방장인 그룹</option>
+            </select>
           </div>
         </div>
 
-        <div css={addButtonStyle}>+</div>
-
-        <BottomNav />
+        <div css={gridStyle}>
+          {filteredGroups.map((group) => (
+            <GroupCard
+              key={group.groupName}
+              groupImage={group.groupImage}
+              groupName={group.groupName}
+              isOwner={group.isOwner}
+              onClick={() => navigate('/groupdetail')}
+            />
+          ))}
+        </div>
       </div>
-    </Layout>
+
+      <div css={addButtonStyle}>+</div>
+    </div>
   );
 };
 

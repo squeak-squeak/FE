@@ -1,7 +1,4 @@
 import { css } from '@emotion/react';
-import Layout from '@/Components/Layout';
-import Header from '@/Components/Header';
-import BottomNav from '@/Components/BottomNav';
 import VoteCard from '@/Components/VoteCard';
 import SectionHeader from '@/Components/SectionHeader';
 import { theme } from '@/Style/theme';
@@ -84,8 +81,7 @@ const sliderStyle = css`
 
 const Home = () => {
   return (
-    <Layout isHome={true}>
-      <Header />
+    <>
       <div
         css={css`
           padding: 20px;
@@ -156,8 +152,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <BottomNav />
-    </Layout>
+    </>
   );
 };
 

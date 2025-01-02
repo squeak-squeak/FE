@@ -1,4 +1,3 @@
-import Header from '@/Components/Header';
 import { css } from '@emotion/react';
 import BackHead from '@/Components/Common/BackHead';
 import { useState } from 'react';
@@ -83,8 +82,6 @@ export default function NewVote() {
   console.log(isChecked);
   return (
     <>
-      <Header />
-
       <div>
         <BackHead title="투표 만들기" />
 

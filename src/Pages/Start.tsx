@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
-import Layout from '@/Components/Layout';
 import { theme } from '@/Style/theme';
 
 const Start = () => {
@@ -83,7 +82,7 @@ const Start = () => {
   `;
 
   return (
-    <Layout>
+    <>
       <div css={headerStyle}>
         <div css={headerTopStyle}>
           <img src="/cheese.png" alt="로고" css={cheeseImageStyle} />
@@ -116,7 +115,7 @@ const Start = () => {
           css={loginButtonStyle}
         />
       </div>
-    </Layout>
+    </>
   );
 };
 

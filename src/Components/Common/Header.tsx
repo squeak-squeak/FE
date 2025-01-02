@@ -1,7 +1,7 @@
 import { theme } from '@/Style/theme';
 import { css } from '@emotion/react';
 
-const Header = ({ isShowInviteIcon = true }) => {
+const Header = () => {
   const headerStyle = css`
     display: flex;
     justify-content: space-between;
@@ -48,9 +48,7 @@ const Header = ({ isShowInviteIcon = true }) => {
         <span css={headerTitleStyle}>찍찍</span>
       </div>
       <div css={headerRightStyle}>
-        {isShowInviteIcon && (
-          <img src="/invite.png" alt="초대코드" css={headerIconStyle} />
-        )}
+        <img src="/invite.png" alt="초대코드" css={headerIconStyle} />
         <img src="/bell.png" alt="알림" css={headerIconStyle} />
       </div>
     </header>
