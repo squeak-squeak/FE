@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/Components/Layout';
+import { theme } from '@/Style/theme';
 
 const Start = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const Start = () => {
     font-weight: bold;
     color: #ffcb10;
     cursor: pointer;
+    ${theme.typo.Logo}
   `;
 
   const imageContainerStyle = css`

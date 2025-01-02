@@ -1,3 +1,4 @@
+import { theme } from '@/Style/theme';
 import { css } from '@emotion/react';
 
 const Header = ({ isShowInviteIcon = true }) => {
@@ -20,6 +21,7 @@ const Header = ({ isShowInviteIcon = true }) => {
     font-weight: bold;
     margin-left: 10px;
     color: black;
+    ${theme.typo.Logo}
   `;
 
   const headerRightStyle = css`

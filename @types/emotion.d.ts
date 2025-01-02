@@ -1,4 +1,5 @@
 import '@emotion/react';
+import { SerializedStyles } from '@emotion/react';
 
 declare module '@emotion/react' {
   export interface Theme {
@@ -6,6 +7,9 @@ declare module '@emotion/react' {
       yellow: string;
       orange: string;
       cream: string;
+    };
+    typo: {
+      Logo: SerializedStyles;
     };
   }
 }
