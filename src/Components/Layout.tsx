@@ -6,20 +6,6 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, isHome = false }: LayoutProps) => {
-  const globalStyle = css`
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html,
-    body {
-      height: 100%;
-      background-color: white;
-      overflow-x: hidden;
-    }
-  `;
-
   const containerStyle = css`
     position: relative;
     display: flex;
@@ -40,10 +26,8 @@ const Layout = ({ children, isHome = false }: LayoutProps) => {
   `;
 
   return (
-    <div css={globalStyle}>
-      <div css={containerStyle}>
-        <div css={contentStyle}>{children}</div>
-      </div>
+    <div css={containerStyle}>
+      <div css={contentStyle}>{children}</div>
     </div>
   );
 };
