@@ -14,6 +14,7 @@ const pageWrapperStyle = css`
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  font-weight: bold;
 `;
 
 const contentWrapperStyle = css`
@@ -145,7 +146,13 @@ const GroupList = () => {
   return (
     <div css={pageWrapperStyle}>
       <div css={contentWrapperStyle}>
-        <h2 css={{ textAlign: 'center', margin: '10px 0', color: 'black' }}>
+        <h2
+          css={{
+            textAlign: 'center',
+            margin: '10px 0',
+            color: 'black',
+            fontWeight: 'bold'
+          }}>
           그룹 리스트
         </h2>
 

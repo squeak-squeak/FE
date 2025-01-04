@@ -12,6 +12,7 @@ const pageWrapperStyle = css`
   overflow-x: hidden;
   overflow-y: hidden;
   height: calc(100vh - 70px);
+  font-weight: bold;
 `;
 
 const contentWrapperStyle = css`
@@ -153,7 +154,6 @@ const buttonStyle = (disabled: boolean) => css`
   color: ${disabled ? '#DDDDDD' : 'white'};
   border: 2px solid ${disabled ? '#D9D9D9' : '#ffcb10'};
   cursor: ${disabled ? 'not-allowed' : 'pointer'};
-  font-family: 'RixInooAriDuri Regular';
 `;
 
 const plusButtonWrapperStyle = css`
@@ -173,7 +173,6 @@ const plusButtonStyle = css`
   color: #c2c2c2;
   cursor: pointer;
   font-size: 16px;
-  font-family: 'RixInooAriDuri Regular';
 `;
 
 const truncateText = (text: string, maxLength: number) => {

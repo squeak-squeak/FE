@@ -14,6 +14,7 @@ const Start = () => {
     margin-bottom: 20px;
     padding-left: 20px;
     padding-top: 20px;
+    font-weight: bold;
   `;
 
   const headerTopStyle = css`

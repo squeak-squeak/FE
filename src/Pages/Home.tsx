@@ -7,6 +7,7 @@ const greetingStyle = css`
   font-size: 20px;
   margin-bottom: 10px;
   color: black;
+  font-weight: bold;
 `;
 
 const bannerStyle = css`
@@ -14,6 +15,7 @@ const bannerStyle = css`
   align-items: flex-start;
   gap: 10px;
   border-radius: 10px;
+  font-weight: bold;
 `;
 
 const contentAndButtonStyle = css`
@@ -32,6 +34,7 @@ const contentStyle = css`
   strong {
     font-size: 17px;
     color: ${theme.colors.orange};
+    font-weight: bold;
   }
 `;
 
@@ -60,6 +63,7 @@ const whiteBoxStyle = css`
   justify-content: space-between;
   height: calc(100vh - 320px);
   overflow-y: auto;
+  font-weight: bold;
 `;
 
 const sliderStyle = css`
