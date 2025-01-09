@@ -11,6 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
   const loc = useLocation();
   const isHome = loc.pathname === '/home' ? true : false;
   const isStart = loc.pathname === '/' ? true : false;
+  const isVote = loc.pathname === '/vote' ? true : false;
 
   const containerStyle = css`
     position: relative;
@@ -34,7 +35,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div css={containerStyle}>
       <div css={contentStyle}>
-        {!isStart && <Header />}
+        {!isStart && !isVote && <Header />}
         {children}
         <BottomNav />
       </div>

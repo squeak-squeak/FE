@@ -8,6 +8,7 @@ import GroupDetail from './Pages/GroupDetail';
 import Notification from '@/Pages/Notification';
 import NewVote from '@/Pages/NewVote';
 import NewGroup from '@/Pages/NewGroup';
+import Vote from '@/Pages/Vote';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/notification" element={<Notification />} />
           <Route path="/new-vote" element={<NewVote />} />
           <Route path="/new-group" element={<NewGroup />} />
+          <Route path="/vote" element={<Vote />} />
         </Routes>
       </Layout>
     </Router>
