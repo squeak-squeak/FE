@@ -1,22 +1,25 @@
+import React from 'react';
 import { theme } from '@/Style/theme';
 import { css } from '@emotion/react';
 import { Settings, PencilLine } from 'lucide-react';
 import GroupIcon from '@/assets/svg/Group.svg';
+import VoteIcon from '@/assets/svg/Vote.svg';
 
 interface ContentCardProps {
   title: string;
   value: number;
+  Icon: React.ReactNode;
 }
 
 function ContentCard({ item }: { item: ContentCardProps }) {
-  const { title, value } = item;
+  const { title, value, Icon } = item;
 
   return (
     <div css={contentCardContainerStyle}>
       <div css={cardHeadStyle}>
         <div css={contentTitleStyle}>{title}</div>
 
-        <GroupIcon width={30} />
+        {Icon}
       </div>
 
       <div css={contentValueBoxStyle}>
@@ -100,8 +103,20 @@ function Mypage() {
       </div>
 
       <div css={contentContainerStyle}>
-        <ContentCard item={{ title: '그룹 수', value: 7 }} />
-        <ContentCard item={{ title: '받은 투표', value: 3 }} />
+        <ContentCard
+          item={{
+            title: '그룹 수',
+            value: 7,
+            Icon: <GroupIcon width={30} />
+          }}
+        />
+        <ContentCard
+          item={{
+            title: '받은 투표',
+            value: 3,
+            Icon: <VoteIcon width={30} />
+          }}
+        />
       </div>
 
       <button css={buttonStyle}>로그아웃</button>
