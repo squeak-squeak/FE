@@ -1,6 +1,7 @@
 import { theme } from '@/Style/theme';
 import { css } from '@emotion/react';
 import { Settings, PencilLine } from 'lucide-react';
+import GroupIcon from '@/assets/svg/Group.svg';
 
 interface ContentCardProps {
   title: string;
@@ -15,7 +16,7 @@ function ContentCard({ item }: { item: ContentCardProps }) {
       <div css={cardHeadStyle}>
         <div css={contentTitleStyle}>{title}</div>
 
-        <PencilLine />
+        <GroupIcon width={30} />
       </div>
 
       <div css={contentValueBoxStyle}>
