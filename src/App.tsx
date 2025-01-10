@@ -11,6 +11,7 @@ import NewGroup from '@/Pages/NewGroup';
 import Vote from '@/Pages/Vote';
 import ActiveVotes from '@/Pages/ActiveVotes';
 import FinishedVotes from '@/Pages/FinishedVotes';
+import Mypage from '@/Pages/Mypage';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/vote" element={<Vote />} />
           <Route path="/active-votes" element={<ActiveVotes />} />
           <Route path="/finished-votes" element={<FinishedVotes />} />
+          <Route path="/mypage" element={<Mypage />} />
         </Routes>
       </Layout>
     </Router>
