@@ -1,5 +1,5 @@
+import { HEADER_HEIGHT, NAV_HEIGHT } from '@/constants/layoutConstants';
 import { css } from '@emotion/react';
-import BackHead from '@/Components/Common/BackHead';
 
 const data = [
   '그룹 A의 [몇 번째 투표]에서 5표를 획득했습니다!',
@@ -20,22 +20,26 @@ const data = [
 ];
 
 const container = css`
-  width: 100%;
+  width: 371px;
+  height: calc(100svh - (${HEADER_HEIGHT}px + ${NAV_HEIGHT}px));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  position: relative;
+  position: absolute;
+  top: ${HEADER_HEIGHT}px;
 `;
 
 const notiContainer = css`
+  height: 100svh;
   display: flex;
   flex-direction: column;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
   border-top: 3px solid #efefef;
-  height: 100svh;
   overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const notiBar = css`
@@ -44,7 +48,7 @@ const notiBar = css`
   padding-left: 20px;
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 16px;
   font-size: 15px;
 `;
 
@@ -66,30 +70,41 @@ const button = css`
   }
 `;
 
+const titleStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 42px;
+  position: relative;
+  color: black;
+  font-size: 30px;
+`;
+
 export default function Notification() {
   return (
-    <>
-      <div css={container}>
-        <BackHead title="알림" />
+    <div css={container}>
+      <div css={titleStyle}>알림</div>
 
-        <div css={notiContainer}>
-          {data.map((item) => (
-            <div css={notiBar}>
-              <div
-                css={{
-                  width: '30px',
-                  height: '30px',
-                  borderRadius: '100%',
-                  backgroundColor: '#efefef'
-                }}
-              />
-              {item}
-            </div>
-          ))}
-        </div>
-
-        <button css={button}>취소</button>
+      <div css={notiContainer}>
+        {data.map((item, idx) => (
+          <div key={idx} css={notiBar}>
+            <div
+              css={{
+                width: '30px',
+                height: '30px',
+                borderRadius: '100%',
+                backgroundColor: '#efefef'
+              }}
+            />
+            {item}
+          </div>
+        ))}
       </div>
-    </>
+
+      <button css={button}>취소</button>
+    </div>
   );
 }
+
+// Todo : 모달형식으로 변경

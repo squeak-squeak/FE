@@ -27,8 +27,8 @@ const Layout = ({ children }: LayoutProps) => {
   `;
 
   const contentStyle = css`
-    background-color: ${isHome ? '#FFEFB8' : 'white'};
     height: calc(100svh - (${HEADER_HEIGHT}px + ${NAV_HEIGHT}px));
+    background-color: ${isHome ? '#FFEFB8' : 'white'};
   `;
 
   return (

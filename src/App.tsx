@@ -5,7 +5,6 @@ import Home from '@/Pages/Home';
 import GroupList from '@/Pages/GroupList';
 import VoteResult from './Pages/VoteResult';
 import GroupDetail from './Pages/GroupDetail';
-import Notification from '@/Pages/Notification';
 import NewVote from '@/Pages/NewVote';
 import NewGroup from '@/Pages/NewGroup';
 import Vote from '@/Pages/Vote';
@@ -23,7 +22,6 @@ const App = () => {
           <Route path="/grouplist" element={<GroupList />} />
           <Route path="/voteresult" element={<VoteResult />} />
           <Route path="/groupdetail" element={<GroupDetail />} />
-          <Route path="/notification" element={<Notification />} />
           <Route path="/new-vote" element={<NewVote />} />
           <Route path="/new-group" element={<NewGroup />} />
           <Route path="/vote" element={<Vote />} />
