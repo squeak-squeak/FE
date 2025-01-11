@@ -90,7 +90,6 @@ const groupContainer = css`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 0 10px;
 `;
 
 const contentBoxStyle = css`

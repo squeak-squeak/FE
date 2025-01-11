@@ -125,8 +125,6 @@ function Mypage() {
 }
 
 const containerStyle = css`
-  padding: 10px;
-  height: calc(100svh - 140px);
   display: flex;
   flex-direction: column;
   gap: 90px;

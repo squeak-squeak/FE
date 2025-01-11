@@ -54,7 +54,7 @@ const containerStyle = css`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 81px 14px 54px;
+  padding: 81px 0 54px;
 `;
 
 const voteInfoBoxStyle = css`

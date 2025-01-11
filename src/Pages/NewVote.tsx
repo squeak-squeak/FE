@@ -3,6 +3,47 @@ import BackHead from '@/Components/Common/BackHead';
 import { useState } from 'react';
 import { theme } from '@/Style/theme';
 
+export default function NewVote() {
+  const [isChecked, setIsChecked] = useState(false);
+  const handleChecked = () => {
+    setIsChecked((prev) => !prev);
+  };
+
+  return (
+    <div>
+      <BackHead title="투표 만들기" />
+
+      <div css={container}>
+        <div css={contentBox}>
+          <h6 css={contentLabel}>그룹 선택</h6>
+          <select css={selectStyle} defaultValue={'플레이스홀더'}>
+            <option disabled hidden>
+              플레이스홀더
+            </option>
+            <option css={optionStyle}>asdf</option>
+          </select>
+        </div>
+
+        <div css={contentBox}>
+          <h6 css={contentLabel}>질문 작성</h6>
+          <textarea
+            css={textareaStyle}
+            placeholder="그룹을 간략하게 설명해주세요"
+          />
+          <div css={checkboxContainer}>
+            <button css={checkboxButton} onClick={handleChecked}>
+              <input type="checkbox" checked={isChecked} readOnly />
+              <span>익명 생성</span>
+            </button>
+          </div>
+        </div>
+
+        <button css={button}>투표 생성하기</button>
+      </div>
+    </div>
+  );
+}
+
 const container = css`
   display: flex;
   flex-direction: column;
@@ -73,46 +114,3 @@ const button = css`
   cursor: pointer;
   font-size: 24px;
 `;
-
-export default function NewVote() {
-  const [isChecked, setIsChecked] = useState(false);
-  const handleChecked = () => {
-    setIsChecked((prev) => !prev);
-  };
-  console.log(isChecked);
-  return (
-    <>
-      <div>
-        <BackHead title="투표 만들기" />
-
-        <div css={container}>
-          <div css={contentBox}>
-            <h6 css={contentLabel}>그룹 선택</h6>
-            <select css={selectStyle} defaultValue={'플레이스홀더'}>
-              <option disabled hidden>
-                플레이스홀더
-              </option>
-              <option css={optionStyle}>asdf</option>
-            </select>
-          </div>
-
-          <div css={contentBox}>
-            <h6 css={contentLabel}>질문 작성</h6>
-            <textarea
-              css={textareaStyle}
-              placeholder="그룹을 간략하게 설명해주세요"
-            />
-            <div css={checkboxContainer}>
-              <button css={checkboxButton} onClick={handleChecked}>
-                <input type="checkbox" checked={isChecked} readOnly />
-                <span>익명 생성</span>
-              </button>
-            </div>
-          </div>
-
-          <button css={button}>투표 생성하기</button>
-        </div>
-      </div>
-    </>
-  );
-}

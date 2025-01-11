@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import BackHead from '@/Components/Common/BackHead';
 import { useState } from 'react';
-import { Pointer, PointerOff } from 'lucide-react';
 import { theme } from '@/Style/theme';
 
 interface VoteCardProps {
@@ -78,8 +77,6 @@ function FinishedVotes() {
 }
 
 const containerStyle = css`
-  padding: 10px;
-  height: calc(100svh - 140px);
   display: flex;
   flex-direction: column;
 `;
