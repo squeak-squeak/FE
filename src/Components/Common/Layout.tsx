@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Header from '@/Components/Common/Header';
 import BottomNav from '@/Components/Common/BottomNav';
 import { useLocation } from 'react-router-dom';
-import { HEADER_HEIGHT, NAV_HEIGHT } from '@/constants/layoutConstants';
+import { HEADER_HEIGHT, NAV_HEIGHT } from '@/Constants/layoutConstants';
 
 interface LayoutProps {
   children: React.ReactNode;
