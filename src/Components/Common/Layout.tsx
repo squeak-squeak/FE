@@ -10,8 +10,8 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const loc = useLocation();
   const isHome = loc.pathname === '/home' ? true : false;
-  const isStart = loc.pathname === '/' ? true : false;
-  const isVote = loc.pathname === '/vote' ? true : false;
+  // header가 나오지 않는 경로는 배열에 추가
+  const isHeaderVisible = ['/', '/vote'].includes(loc.pathname);
 
   const containerStyle = css`
     position: relative;
@@ -19,6 +19,7 @@ const Layout = ({ children }: LayoutProps) => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     min-height: 100vh;
     width: 100%;
   `;
@@ -35,7 +36,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div css={containerStyle}>
       <div css={contentStyle}>
-        {!isStart && !isVote && <Header />}
+        {!isHeaderVisible && <Header />}
         {children}
         <BottomNav />
       </div>
