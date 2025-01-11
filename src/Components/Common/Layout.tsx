@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import Header from '@/Components/Common/Header';
 import BottomNav from '@/Components/Common/BottomNav';
 import { useLocation } from 'react-router-dom';
+import { HEADER_HEIGHT, NAV_HEIGHT } from '@/constants/layoutConstants';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,32 +15,27 @@ const Layout = ({ children }: LayoutProps) => {
   const isHeaderVisible = ['/', '/vote'].includes(loc.pathname);
 
   const containerStyle = css`
-    position: relative;
+    width: 100%;
+    max-width: 375px;
+    min-height: 100svh;
+    margin: 0 auto;
+    border-left: 3px solid #efefef;
+    border-right: 3px solid #efefef;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 100vh;
-    width: 100%;
+    padding-bottom: ${NAV_HEIGHT}px;
   `;
 
   const contentStyle = css`
     background-color: ${isHome ? '#FFEFB8' : 'white'};
-    width: 100%;
-    max-width: 375px;
-    flex: 1;
-    border-left: 3px solid #efefef;
-    border-right: 3px solid #efefef;
+    height: calc(100svh - (${HEADER_HEIGHT}px + ${NAV_HEIGHT}px));
   `;
 
   return (
     <div css={containerStyle}>
-      <div css={contentStyle}>
-        {!isHeaderVisible && <Header />}
-        {children}
-        <BottomNav />
-      </div>
+      {!isHeaderVisible && <Header />}
+      <div css={contentStyle}>{children}</div>
+      <BottomNav />
     </div>
   );
 };
