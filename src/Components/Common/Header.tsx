@@ -44,8 +44,17 @@ const Header = () => {
   return (
     <header css={headerStyle}>
       <div css={headerLeftStyle}>
-        <img src="/cheese.png" alt="로고" css={headerLogoStyle} />
-        <span css={headerTitleStyle}>찍찍</span>
+        <a
+          href="/home"
+          css={css`
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+          `}>
+          <img src="/cheese.png" alt="로고" css={headerLogoStyle} />
+          <span css={headerTitleStyle}>찍찍</span>
+        </a>
       </div>
       <div css={headerRightStyle}>
         <img src="/invite.png" alt="초대코드" css={headerIconStyle} />
