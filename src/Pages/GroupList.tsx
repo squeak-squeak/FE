@@ -1,9 +1,11 @@
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GroupProfileIcon from '@/assets/svg/GroupProfile.svg';
+import { Search } from 'lucide-react';
 
 interface GroupCardProps {
-  groupImage: string;
+  groupImage: React.ReactNode;
   groupName: string;
   isOwner: boolean; // 방장 여부
   onClick: () => void; // 클릭 핸들러
@@ -112,7 +114,11 @@ const addButtonStyle = css`
 
 const GroupCard = ({ groupImage, groupName, onClick }: GroupCardProps) => (
   <div css={groupCardStyle} onClick={onClick}>
-    <img src={groupImage} alt={groupName} />
+    {typeof groupImage === 'string' ? (
+      <img src={groupImage} alt={groupName} />
+    ) : (
+      groupImage
+    )}
     <span>{groupName}</span>
   </div>
 );
@@ -123,18 +129,66 @@ const GroupList = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const groups = [
-    { groupImage: '/group.png', groupName: '그룹명1', isOwner: true },
-    { groupImage: '/group.png', groupName: '그룹명2', isOwner: false },
-    { groupImage: '/group.png', groupName: '그룹명3', isOwner: true },
-    { groupImage: '/group.png', groupName: '그룹명4', isOwner: false },
-    { groupImage: '/group.png', groupName: '그룹명5', isOwner: false },
-    { groupImage: '/group.png', groupName: '그룹명6', isOwner: true },
-    { groupImage: '/group.png', groupName: '그룹명7', isOwner: false },
-    { groupImage: '/group.png', groupName: '그룹명8', isOwner: true },
-    { groupImage: '/group.png', groupName: '그룹명9', isOwner: false },
-    { groupImage: '/group.png', groupName: '그룹명10', isOwner: true },
-    { groupImage: '/group.png', groupName: '그룹명11', isOwner: true },
-    { groupImage: '/group.png', groupName: '그룹명12', isOwner: true }
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명1',
+      isOwner: true
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명2',
+      isOwner: false
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명3',
+      isOwner: true
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명4',
+      isOwner: false
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명5',
+      isOwner: false
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명6',
+      isOwner: true
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명7',
+      isOwner: false
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명8',
+      isOwner: true
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명9',
+      isOwner: false
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명10',
+      isOwner: true
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명11',
+      isOwner: true
+    },
+    {
+      groupImage: <GroupProfileIcon width={50} height={50} />,
+      groupName: '그룹명12',
+      isOwner: true
+    }
   ];
 
   const filteredGroups = groups.filter((group) => {
@@ -164,7 +218,9 @@ const GroupList = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)} // 검색어 변경
             />
-            <button>🔍</button>
+            <button>
+              <Search />
+            </button>
           </div>
 
           <div css={dropdownStyle}>
@@ -179,9 +235,9 @@ const GroupList = () => {
         </div>
 
         <div css={gridStyle}>
-          {filteredGroups.map((group) => (
+          {filteredGroups.map((group, index) => (
             <GroupCard
-              key={group.groupName}
+              key={index}
               groupImage={group.groupImage}
               groupName={group.groupName}
               isOwner={group.isOwner}

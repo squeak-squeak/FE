@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '@/Style/theme';
+import ChesseIcon from '@/assets/svg/cheese.svg';
 
 const BottomNav = () => {
   const navigate = useNavigate();
@@ -49,19 +50,19 @@ const BottomNav = () => {
   return (
     <nav css={bottomNavStyle}>
       <button css={navButtonStyle} onClick={() => navigate('/group-list')}>
-        <img src="/cheese.png" alt="그룹" css={navIconStyle} />
+        <ChesseIcon css={navIconStyle} />
         <span className="navLabel" css={navLabelStyle}>
           그룹
         </span>
       </button>
       <button css={navButtonStyle} onClick={() => navigate('/home')}>
-        <img src="/cheese.png" alt="홈" css={navIconStyle} />
+        <ChesseIcon css={navIconStyle} />
         <span className="navLabel" css={navLabelStyle}>
           홈
         </span>
       </button>
       <button css={navButtonStyle} onClick={() => navigate('/mypage')}>
-        <img src="/cheese.png" alt="마이페이지" css={navIconStyle} />
+        <ChesseIcon css={navIconStyle} />
         <span className="navLabel" css={navLabelStyle}>
           마이페이지
         </span>

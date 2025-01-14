@@ -1,5 +1,7 @@
 import { theme } from '@/Style/theme';
 import { css } from '@emotion/react';
+import { Bell, MailPlus } from 'lucide-react';
+import CheeseIcon from '@/assets/svg/cheese.svg';
 
 const Header = () => {
   const headerStyle = css`
@@ -52,13 +54,13 @@ const Header = () => {
             text-decoration: none;
             color: inherit;
           `}>
-          <img src="/cheese.png" alt="로고" css={headerLogoStyle} />
+          <CheeseIcon css={headerLogoStyle} />
           <span css={headerTitleStyle}>찍찍</span>
         </a>
       </div>
       <div css={headerRightStyle}>
-        <img src="/invite.png" alt="초대코드" css={headerIconStyle} />
-        <img src="/bell.png" alt="알림" css={headerIconStyle} />
+        <MailPlus css={headerIconStyle} />
+        <Bell size={30} />
       </div>
     </header>
   );

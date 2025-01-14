@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 import VoteCard from '@/Components/VoteCard';
 import SectionHeader from '@/Components/SectionHeader';
 import { theme } from '@/Style/theme';
+import GroupProfileIcon from '@/assets/svg/GroupProfile.svg';
+import HomeIcon from '@/assets/svg/home.svg';
 
 const greetingStyle = css`
   font-size: 20px;
@@ -92,7 +94,7 @@ const Home = () => {
         `}>
         <div css={greetingStyle}>000님, 안녕하세요!</div>
         <div css={bannerStyle}>
-          <img src="/home.png" alt="홈 이미지" width="150px" />
+          <HomeIcon width={140} />
           <div css={contentAndButtonStyle}>
             <div css={contentStyle}>
               <p>누구를 찍어볼까?</p>
@@ -111,21 +113,21 @@ const Home = () => {
         </SectionHeader>
         <div css={sliderStyle}>
           <VoteCard
-            groupImage="/group.png"
+            groupImage={<GroupProfileIcon />}
             groupName="그룹명A"
             question="질문질문질문"
             peopleCount="9/10"
             isCompleted={false}
           />
           <VoteCard
-            groupImage="/group.png"
+            groupImage={<GroupProfileIcon />}
             groupName="그룹명B"
             question="다른 질문"
             peopleCount="9/10"
             isCompleted={true}
           />
           <VoteCard
-            groupImage="/group.png"
+            groupImage={<GroupProfileIcon />}
             groupName="그룹명B"
             question="다른 질문"
             peopleCount="9/10"
@@ -136,19 +138,19 @@ const Home = () => {
         <SectionHeader>오늘 마감된 투표</SectionHeader>
         <div css={sliderStyle}>
           <VoteCard
-            groupImage="/group.png"
+            groupImage={<GroupProfileIcon />}
             groupName="그룹명A"
             question="지난 질문"
             isClosed={true}
           />
           <VoteCard
-            groupImage="/group.png"
+            groupImage={<GroupProfileIcon />}
             groupName="그룹명B"
             question="다른 지난 질문"
             isClosed={true}
           />
           <VoteCard
-            groupImage="/group.png"
+            groupImage={<GroupProfileIcon />}
             groupName="그룹명B"
             question="다른 지난 질문"
             isClosed={true}

@@ -1,6 +1,11 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '@/Style/theme';
+import CheeseIcon from '@/assets/svg/cheese.svg';
+import HamsterIcon from '@/assets/svg/hamster.svg';
+import KakaoIcon from '@/assets/svg/kakao-button.svg';
+import NaverIcon from '@/assets/svg/naver-button.svg';
+import GoogleIcon from '@/assets/svg/google-button.svg';
 
 const Start = () => {
   const navigate = useNavigate();
@@ -86,7 +91,7 @@ const Start = () => {
     <>
       <div css={headerStyle}>
         <div css={headerTopStyle}>
-          <img src="/cheese.png" alt="로고" css={cheeseImageStyle} />
+          <CheeseIcon css={cheeseImageStyle} />
           <span>누구를 찍어볼까?</span>
         </div>
         <div css={headerBottomStyle}>
@@ -97,24 +102,12 @@ const Start = () => {
         </div>
       </div>
       <div css={imageContainerStyle}>
-        <img src="/hamster.png" alt="햄스터" css={hamsterImageStyle} />
+        <HamsterIcon css={hamsterImageStyle} />
       </div>
       <div css={loginButtonsStyle}>
-        <img
-          src="/kakao-button.png"
-          alt="카카오 로그인"
-          css={loginButtonStyle}
-        />
-        <img
-          src="/naver-button.png"
-          alt="네이버 로그인"
-          css={loginButtonStyle}
-        />
-        <img
-          src="/google-button.png"
-          alt="Google 로그인"
-          css={loginButtonStyle}
-        />
+        <KakaoIcon css={loginButtonStyle} />
+        <NaverIcon css={loginButtonStyle} />
+        <GoogleIcon css={loginButtonStyle} />
       </div>
     </>
   );

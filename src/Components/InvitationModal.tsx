@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Copy } from 'lucide-react';
 
 const modalWrapperStyle = css`
   position: fixed;
@@ -112,7 +113,7 @@ const InvitationModal: React.FC<GroupInvitationModalProps> = ({
           <div css={inviteCodeWrapperStyle}>
             <span>{inviteCode}</span>
             <button css={copyButtonStyle} onClick={handleCopyCode}>
-              <img src="/copy.png" alt="Copy" width="20" />
+              <Copy width={20} />
             </button>
           </div>
           <button

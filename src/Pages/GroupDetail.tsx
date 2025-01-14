@@ -5,6 +5,10 @@ import BottomNav from '@/Components/Common/BottomNav';
 import InvitationModal from '@/Components/InvitationModal';
 import PendingModal from '@/Components/PendingModal';
 import { theme } from '@/Style/theme';
+import GroupProfileIcon from '@/assets/svg/GroupProfile.svg';
+import StabbingIcon from '@/assets/svg/stabbing.svg';
+import NoStabbingIcon from '@/assets/svg/no_stabbing.svg';
+import { PencilLine } from 'lucide-react';
 
 const pageWrapperStyle = css`
   display: flex;
@@ -187,7 +191,10 @@ const GroupDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // 초대 모달 상태
   const [isPendingModalOpen, setIsPendingModalOpen] = useState(false); // 승인 대기 모달 상태
 
-  const members = Array(26).fill({ name: '구성원', image: '/profile.png' }); // 더미 데이터
+  const members = Array(26).fill({
+    name: '구성원',
+    image: <GroupProfileIcon width={40} height={40} />
+  });
   const membersPerPage = 9;
   const totalPages = Math.ceil(members.length / membersPerPage);
 
@@ -253,7 +260,11 @@ const GroupDetail = () => {
             }}>
             그룹A
           </h2>
-          {isOwner && <span css={editableIconStyle}>✏️</span>}
+          {isOwner && (
+            <span css={editableIconStyle}>
+              <PencilLine />
+            </span>
+          )}
         </div>
 
         <div css={bannerStyle}>
@@ -267,7 +278,7 @@ const GroupDetail = () => {
                 cursor: 'pointer',
                 fontSize: '16px'
               }}>
-              ✏️
+              <PencilLine />
             </span>
           )}
         </div>
@@ -295,7 +306,7 @@ const GroupDetail = () => {
                   cursor: 'pointer',
                   fontSize: '16px'
                 }}>
-                ✏️
+                <PencilLine />
               </span>
             )}
           </div>
@@ -335,7 +346,11 @@ const GroupDetail = () => {
               )
               .map((member, index) => (
                 <div key={index} css={memberStyle}>
-                  <img src={member.image} alt={member.name} />
+                  {typeof member.image === 'string' ? (
+                    <img src={member.image} alt={member.name} />
+                  ) : (
+                    member.image
+                  )}
                   <span>{`${member.name}${index + 1}`}</span>
                 </div>
               ))}
@@ -372,11 +387,11 @@ const GroupDetail = () => {
             <div key={index} css={voteCardStyle}>
               <span css={questionStyle}>{truncateText(vote.question, 12)}</span>
               <div css={progressWrapperStyle}>
-                <img
-                  src={vote.stabbing ? '/stabbing.png' : '/no_stabbing.png'}
-                  alt={vote.stabbing ? 'Stabbing' : 'No Stabbing'}
-                  css={imageStyle}
-                />
+                {vote.stabbing ? (
+                  <StabbingIcon css={imageStyle} />
+                ) : (
+                  <NoStabbingIcon css={imageStyle} />
+                )}
                 <span>{vote.progress}</span>
               </div>
               <button css={buttonStyle(vote.completed)}>

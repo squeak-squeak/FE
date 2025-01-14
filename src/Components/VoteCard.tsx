@@ -1,8 +1,9 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 interface VoteCardProps {
-  groupImage: string;
+  groupImage: string | React.ReactNode;
   groupName: string;
   question: string;
   peopleCount?: string;
@@ -103,7 +104,11 @@ const VoteCard = ({
     <div css={cardStyle}>
       <div css={headerStyle}>
         <div css={{ display: 'flex', alignItems: 'center' }}>
-          <img src={groupImage} alt="그룹 이미지" css={groupImageStyle} />
+          {typeof groupImage === 'string' ? (
+            <img src={groupImage} alt="그룹 이미지" css={groupImageStyle} />
+          ) : (
+            groupImage
+          )}
           <span css={groupNameStyle}>{groupName}</span>
         </div>
         {peopleCount && <span css={peopleCountStyle}>{peopleCount}</span>}
