@@ -48,7 +48,7 @@ const BottomNav = () => {
 
   return (
     <nav css={bottomNavStyle}>
-      <button css={navButtonStyle} onClick={() => navigate('/grouplist')}>
+      <button css={navButtonStyle} onClick={() => navigate('/group-list')}>
         <img src="/cheese.png" alt="그룹" css={navIconStyle} />
         <span className="navLabel" css={navLabelStyle}>
           그룹

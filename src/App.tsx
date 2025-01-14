@@ -19,9 +19,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Start />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/grouplist" element={<GroupList />} />
-          <Route path="/voteresult" element={<VoteResult />} />
-          <Route path="/groupdetail" element={<GroupDetail />} />
+          <Route path="/group-list" element={<GroupList />} />
+          <Route path="/vote-result" element={<VoteResult />} />
+          <Route path="/group-detail" element={<GroupDetail />} />
           <Route path="/new-vote" element={<NewVote />} />
           <Route path="/new-group" element={<NewGroup />} />
           <Route path="/vote" element={<Vote />} />

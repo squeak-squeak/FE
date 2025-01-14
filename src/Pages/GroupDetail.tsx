@@ -396,7 +396,7 @@ const GroupDetail = () => {
               <span>{vote.question}</span>
               <button
                 css={buttonStyle(false)}
-                onClick={() => navigate('/voteresult')}>
+                onClick={() => navigate('/vote-result')}>
                 결과 보기
               </button>
             </div>

@@ -61,7 +61,6 @@ const whiteBoxStyle = css`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 320px);
   overflow-y: auto;
   font-weight: bold;
 `;

@@ -185,7 +185,7 @@ const GroupList = () => {
               groupImage={group.groupImage}
               groupName={group.groupName}
               isOwner={group.isOwner}
-              onClick={() => navigate('/groupdetail')}
+              onClick={() => navigate('/group-detail')}
             />
           ))}
         </div>

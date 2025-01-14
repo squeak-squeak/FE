@@ -86,7 +86,7 @@ const VoteCard = ({
 
   const handleButtonClick = () => {
     if (isClosed) {
-      navigate('/voteresult'); // 투표 결과 페이지로 이동
+      navigate('/vote-result'); // 투표 결과 페이지로 이동
     }
   };
 

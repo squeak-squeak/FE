@@ -1,4 +1,4 @@
-import { HEADER_HEIGHT, NAV_HEIGHT } from '@/Constants/layoutConstants';
+import { HEADER_HEIGHT, NAV_HEIGHT } from '@/constants/layoutConstants';
 import { css } from '@emotion/react';
 
 const data = [
