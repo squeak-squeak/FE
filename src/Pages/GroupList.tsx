@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GroupProfileIcon from '@/assets/svg/GroupProfile.svg';
 import { Search } from 'lucide-react';
+import BackHead from '@/Components/Common/BackHead';
 
 interface GroupCardProps {
   groupImage: React.ReactNode;
@@ -199,17 +200,8 @@ const GroupList = () => {
 
   return (
     <div css={pageWrapperStyle}>
+      <BackHead title="그룹 리스트" />
       <div css={contentWrapperStyle}>
-        <h2
-          css={{
-            textAlign: 'center',
-            margin: '10px 0',
-            color: 'black',
-            fontWeight: 'bold'
-          }}>
-          그룹 리스트
-        </h2>
-
         <div css={searchContainerStyle}>
           <div css={searchBarStyle}>
             <input

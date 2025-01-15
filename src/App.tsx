@@ -11,6 +11,7 @@ import Vote from '@/Pages/Vote';
 import ActiveVotes from '@/Pages/ActiveVotes';
 import FinishedVotes from '@/Pages/FinishedVotes';
 import Mypage from '@/Pages/Mypage';
+import Notification from '@/Pages/Notification';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/active-votes" element={<ActiveVotes />} />
           <Route path="/finished-votes" element={<FinishedVotes />} />
           <Route path="/mypage" element={<Mypage />} />
+          <Route path="/notification" element={<Notification />} />
         </Routes>
       </Layout>
     </Router>

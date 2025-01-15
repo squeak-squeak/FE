@@ -242,7 +242,7 @@ const GroupDetail = () => {
           <button
             css={{
               marginRight: 10,
-              fontSize: '20px',
+              fontSize: '25px',
               cursor: 'pointer',
               border: 'none',
               backgroundColor: 'transparent'
@@ -252,7 +252,7 @@ const GroupDetail = () => {
           </button>
           <h2
             css={{
-              fontSize: '20px',
+              fontSize: '25px',
               color: 'black',
               flex: 1,
               display: 'flex',

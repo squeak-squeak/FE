@@ -14,12 +14,7 @@ function BackHead({ title }: BackHeadProps) {
   };
   return (
     <div css={backNavBox}>
-      <ChevronLeft
-        size="30px"
-        color="black" // 이거 없어져야함
-        css={{ cursor: 'pointer' }}
-        onClick={navBack}
-      />
+      <ChevronLeft size="25px" css={{ cursor: 'pointer' }} onClick={navBack} />
       <h1 css={titleStyle}>{title}</h1>
     </div>
   );
@@ -31,16 +26,18 @@ const backNavBox = css`
   margin-top: 32px;
   position: relative;
   margin-bottom: 42px;
+  font-weight: bold;
 `;
 
 const titleStyle = css`
   font-family: Arial, Helvetica, sans-serif;
   color: black;
-  font-size: 30px;
+  font-size: 25px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-weight: bold;
 `;
 
 export default BackHead;

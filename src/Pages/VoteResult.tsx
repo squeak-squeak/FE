@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
+import GroupProfileIcon from '@/assets/svg/GroupProfile.svg';
 
 const containerStyle = css`
   display: flex;
@@ -157,7 +158,7 @@ const VoteResult = () => {
       <div css={podiumStyle}>
         <div>
           <div css={profileWrapperStyle}>
-            <img src="/profile.png" alt="profile" />
+            <GroupProfileIcon />
             <span className="name">{topResults[1].name}</span>
           </div>
           <div css={rankStyle(280)}>
@@ -169,7 +170,7 @@ const VoteResult = () => {
         <div>
           <div css={profileWrapperStyle}>
             <div className="crown">👑</div>
-            <img src="/profile.png" alt="profile" />
+            <GroupProfileIcon />
             <span className="name">{topResults[0].name}</span>
           </div>
           <div css={rankStyle(320)}>
@@ -180,7 +181,7 @@ const VoteResult = () => {
 
         <div>
           <div css={profileWrapperStyle}>
-            <img src="/profile.png" alt="profile" />
+            <GroupProfileIcon />
             <span className="name">{topResults[2].name}</span>
           </div>
           <div css={rankStyle(250)}>
