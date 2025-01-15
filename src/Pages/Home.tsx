@@ -5,6 +5,21 @@ import { theme } from '@/Style/theme';
 import GroupProfileIcon from '@/assets/svg/GroupProfile.svg';
 import HomeIcon from '@/assets/svg/home.svg';
 
+const containerStyle = css`
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  background-color: #ffeeb8;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+`;
+
 const greetingStyle = css`
   font-size: 20px;
   margin-bottom: 10px;
@@ -51,42 +66,105 @@ const plusButtonStyle = css`
   font-size: 30px;
   color: white;
   cursor: pointer;
-  margin-left: 75%;
+  margin-left: auto;
 `;
 
 const whiteBoxStyle = css`
   background-color: white;
-  border-radius: 20px;
-  padding: 10px 10px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow-y: auto;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 375px;
+  box-sizing: border-box;
   font-weight: bold;
 `;
 
 const sliderStyle = css`
   display: flex;
-  gap: 5px;
+  gap: 10px;
   overflow-x: auto;
   white-space: nowrap;
-  margin-top: 0;
-  padding-top: 0;
   padding-bottom: 10px;
+
   &::-webkit-scrollbar {
-    height: 6px;
+    display: none;
   }
-  &::-webkit-scrollbar-thumb {
-    background-color: #d9d9d9;
-    border-radius: 10px;
+`;
+
+const voteCardStyle = css`
+  flex: 0 0 30%;
+  max-width: 140px;
+  min-width: 100px;
+
+  @media (min-width: 768px) {
+    flex: 0 0 40%;
+    max-width: 180px;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 0 45%;
+    max-width: 220px;
+  }
+
+  @media (min-width: 1280px) {
+    flex: 0 0 50%;
+    max-width: 250px;
   }
 `;
 
 const Home = () => {
+  const renderVoteCards = (
+    data: Array<{
+      groupName: string;
+      question: string;
+      peopleCount?: string;
+      isCompleted?: boolean;
+      isClosed?: boolean;
+    }>
+  ) =>
+    data.map((item, index) => (
+      <VoteCard
+        key={index}
+        groupImage={<GroupProfileIcon />}
+        groupName={item.groupName}
+        question={item.question}
+        peopleCount={item.peopleCount}
+        isCompleted={item.isCompleted}
+        isClosed={item.isClosed}
+        css={voteCardStyle}
+      />
+    ));
+
+  const ongoingVotes = [
+    {
+      groupName: '그룹명A',
+      question: '질문질문질문',
+      peopleCount: '9/10',
+      isCompleted: false
+    },
+    {
+      groupName: '그룹명B',
+      question: '다른 질문',
+      peopleCount: '9/10',
+      isCompleted: true
+    },
+    {
+      groupName: '그룹명B',
+      question: '다른 질문',
+      peopleCount: '9/10',
+      isCompleted: true
+    }
+  ];
+
+  const closedVotes = [
+    { groupName: '그룹명A', question: '지난 질문', isClosed: true },
+    { groupName: '그룹명B', question: '다른 지난 질문', isClosed: true },
+    { groupName: '그룹명B', question: '다른 지난 질문', isClosed: true }
+  ];
+
   return (
-    <>
+    <div css={containerStyle}>
       <div
         css={css`
           padding: 20px;
@@ -109,55 +187,14 @@ const Home = () => {
 
       <div css={whiteBoxStyle}>
         <SectionHeader>
-          현재 진행 중인 투표 <strong>n개</strong>
+          현재 진행 중인 투표 <strong>{ongoingVotes.length}개</strong>
         </SectionHeader>
-        <div css={sliderStyle}>
-          <VoteCard
-            groupImage={<GroupProfileIcon />}
-            groupName="그룹명A"
-            question="질문질문질문"
-            peopleCount="9/10"
-            isCompleted={false}
-          />
-          <VoteCard
-            groupImage={<GroupProfileIcon />}
-            groupName="그룹명B"
-            question="다른 질문"
-            peopleCount="9/10"
-            isCompleted={true}
-          />
-          <VoteCard
-            groupImage={<GroupProfileIcon />}
-            groupName="그룹명B"
-            question="다른 질문"
-            peopleCount="9/10"
-            isCompleted={true}
-          />
-        </div>
+        <div css={sliderStyle}>{renderVoteCards(ongoingVotes)}</div>
 
         <SectionHeader>오늘 마감된 투표</SectionHeader>
-        <div css={sliderStyle}>
-          <VoteCard
-            groupImage={<GroupProfileIcon />}
-            groupName="그룹명A"
-            question="지난 질문"
-            isClosed={true}
-          />
-          <VoteCard
-            groupImage={<GroupProfileIcon />}
-            groupName="그룹명B"
-            question="다른 지난 질문"
-            isClosed={true}
-          />
-          <VoteCard
-            groupImage={<GroupProfileIcon />}
-            groupName="그룹명B"
-            question="다른 지난 질문"
-            isClosed={true}
-          />
-        </div>
+        <div css={sliderStyle}>{renderVoteCards(closedVotes)}</div>
       </div>
-    </>
+    </div>
   );
 };
 

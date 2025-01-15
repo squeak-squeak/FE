@@ -9,9 +9,10 @@ interface VoteCardProps {
   peopleCount?: string;
   isCompleted?: boolean; // 투표 완료 여부
   isClosed?: boolean; // 마감된 투표 여부
+  css?: any; // 외부에서 커스텀 스타일을 전달받기 위한 prop
 }
 
-const cardStyle = css`
+const baseCardStyle = css`
   width: 200px;
   padding: 20px;
   background-color: white;
@@ -23,6 +24,14 @@ const cardStyle = css`
   align-items: center;
   text-align: center;
   font-family: Arial, sans-serif;
+
+  @media (min-width: 768px) {
+    width: 240px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 280px;
+  }
 `;
 
 const headerStyle = css`
@@ -78,7 +87,8 @@ const VoteCard = ({
   question,
   peopleCount,
   isCompleted = false,
-  isClosed = false
+  isClosed = false,
+  css: customStyle // 외부 스타일 적용
 }: VoteCardProps) => {
   const navigate = useNavigate();
 
@@ -101,7 +111,7 @@ const VoteCard = ({
   }
 
   return (
-    <div css={cardStyle}>
+    <div css={[baseCardStyle, customStyle]}>
       <div css={headerStyle}>
         <div css={{ display: 'flex', alignItems: 'center' }}>
           {typeof groupImage === 'string' ? (

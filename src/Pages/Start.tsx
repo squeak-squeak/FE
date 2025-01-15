@@ -67,7 +67,7 @@ const Start = () => {
   const loginButtonsStyle = css`
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
     align-items: center;
     margin-top: 20%;
@@ -75,15 +75,23 @@ const Start = () => {
     @media (max-width: 768px) {
       gap: 10px;
     }
+
+    @media (max-width: 480px) {
+      gap: 8px;
+    }
   `;
 
   const loginButtonStyle = css`
     width: 60%;
-    max-width: 300px; /* 버튼 최대 크기 */
+    max-width: 300px;
     cursor: pointer;
 
     @media (max-width: 768px) {
-      width: 80%; /* 태블릿 및 모바일 화면 */
+      width: 80%;
+    }
+
+    @media (max-width: 480px) {
+      width: 90%;
     }
   `;
 

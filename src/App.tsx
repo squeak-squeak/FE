@@ -37,5 +37,3 @@ const App = () => {
 };
 
 export default App;
-
-// Todo: 교진님 BackHead.tsx컴포넌트 활용해서 페이지 폴더에 있는 파일들 수정해주세요
