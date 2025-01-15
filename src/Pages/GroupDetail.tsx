@@ -25,6 +25,13 @@ const contentWrapperStyle = css`
   overflow-x: hidden;
   padding: 20px;
   box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 const bannerStyle = css`
