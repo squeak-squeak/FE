@@ -10,9 +10,17 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const loc = useLocation();
-  const isHome = loc.pathname === '/home' ? true : false;
+  const isHome = loc.pathname === '/home';
+
   // header가 나오지 않는 경로는 배열에 추가
-  const isHeaderVisible = ['/', '/vote'].includes(loc.pathname);
+  const isHeaderVisible = ['/', '/vote', '/notification'].includes(
+    loc.pathname
+  );
+
+  // BottomNav가 보이지 않는 경로 설정
+  const isBottomNavVisible = !['/', '/vote', '/notification'].includes(
+    loc.pathname
+  );
 
   const containerStyle = css`
     width: 100%;
@@ -23,11 +31,14 @@ const Layout = ({ children }: LayoutProps) => {
     border-right: 3px solid #efefef;
     display: flex;
     flex-direction: column;
-    padding-bottom: ${NAV_HEIGHT}px;
+    padding-bottom: ${isBottomNavVisible ? `${NAV_HEIGHT}px` : '0'};
   `;
 
   const contentStyle = css`
-    height: calc(100svh - (${HEADER_HEIGHT}px + ${NAV_HEIGHT}px));
+    height: calc(
+      100svh -
+        (${HEADER_HEIGHT}px + ${isBottomNavVisible ? `${NAV_HEIGHT}px` : '0px'})
+    );
     background-color: ${isHome ? '#FFEFB8' : 'white'};
     padding: 0 10px;
   `;
@@ -36,7 +47,7 @@ const Layout = ({ children }: LayoutProps) => {
     <div css={containerStyle}>
       {!isHeaderVisible && <Header />}
       <div css={contentStyle}>{children}</div>
-      <BottomNav />
+      {isBottomNavVisible && <BottomNav />}
     </div>
   );
 };
