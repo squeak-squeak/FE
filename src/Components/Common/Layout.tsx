@@ -31,6 +31,7 @@ const Layout = ({ children }: LayoutProps) => {
     border-right: 3px solid #efefef;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     padding-bottom: ${isBottomNavVisible ? `${NAV_HEIGHT}px` : '0'};
   `;
 
@@ -41,6 +42,14 @@ const Layout = ({ children }: LayoutProps) => {
     );
     background-color: ${isHome ? '#FFEFB8' : 'white'};
     padding: 0 10px;
+
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   `;
 
   return (

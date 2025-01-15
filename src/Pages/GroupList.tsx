@@ -15,23 +15,29 @@ interface GroupCardProps {
 const pageWrapperStyle = css`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  position: relative;
   overflow: hidden;
-  font-weight: bold;
+  overflow-y: auto;
+  height: calc(100vh - 100px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 const contentWrapperStyle = css`
   flex: 1;
-  overflow-y: auto;
-  padding: 0 0 80px;
-  margin-top: -10px;
+  padding: 10px 20px;
+  box-sizing: border-box;
 `;
 
 const searchContainerStyle = css`
   display: flex;
   flex-direction: column;
-  margin: 10px 20px;
-  gap: 10px;
+  margin-bottom: 20px;
 `;
 
 const searchBarStyle = css`
@@ -57,6 +63,8 @@ const searchBarStyle = css`
 const dropdownStyle = css`
   display: flex;
   justify-content: flex-end;
+  margin-top: 10px;
+
   select {
     width: 150px;
     padding: 8px;
@@ -70,7 +78,6 @@ const gridStyle = css`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
-  margin: 10px 20px;
 `;
 
 const groupCardStyle = css`
@@ -96,9 +103,9 @@ const groupCardStyle = css`
 `;
 
 const addButtonStyle = css`
-  position: absolute;
-  bottom: 80px;
-  right: 20px;
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
   width: 50px;
   height: 50px;
   background-color: #ffcb10;
@@ -216,10 +223,7 @@ const GroupList = () => {
           </div>
 
           <div css={dropdownStyle}>
-            <select
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)} // 드롭다운 값 변경
-            >
+            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
               <option value="all">전체</option>
               <option value="owner">내가 방장인 그룹</option>
             </select>
