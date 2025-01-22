@@ -3,24 +3,30 @@ import { ChangeEvent, useState } from 'react';
 import { css } from '@emotion/react';
 
 function KakaoRedirect() {
-  const { search: code } = useLocation();
+  const { search } = useLocation();
+  const code = search.slice(6);
   const [number, setNumber] = useState('');
   const handleNumber = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     setNumber(e.target.value);
   };
-
-  console.log(code.slice(6));
-
+  const data = {
+    code,
+    phoneNumber: '01077075801',
+    socialType: 'KAKAO',
+    state: 'asdf'
+  };
   const submit = () => {
-    fetch('http://localhost:3000/login', {
+    fetch('http://localhost:8080/join', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ number })
+      body: JSON.stringify(data)
     });
   };
+
+  console.log(code, number);
 
   return (
     <div css={containerStyle}>

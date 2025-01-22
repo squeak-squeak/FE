@@ -97,10 +97,8 @@ const Start = () => {
     }
   `;
 
-  const Rest_api_key = '977a86566d3d940724d7b6a6cec0fae3'; //REST API KEY
-  const redirect_uri = 'http://localhost:5173/redirect/kakao'; //Redirect URI
   // oauth 요청 URL
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_KAKAO_REDIRECT_URL}&response_type=code`;
 
   return (
     <>
