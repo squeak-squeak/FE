@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { Settings, PencilLine } from 'lucide-react';
 import GroupIcon from '@/assets/svg/Group.svg';
 import VoteIcon from '@/assets/svg/Vote.svg';
+import { useAuth } from '@/Auth/AuthContext';
 
 interface ContentCardProps {
   title: string;
@@ -26,6 +27,74 @@ function ContentCard({ item }: { item: ContentCardProps }) {
         <span css={valueStyle}>{value}</span>
         <span css={unitStyle}>개</span>
       </div>
+    </div>
+  );
+}
+
+function Mypage() {
+  const { user, isLoggedIn, logout } = useAuth();
+
+  // 로그인하지 않은 사용자는 리다이렉트
+  if (!isLoggedIn) {
+    window.location.href = '/';
+    return null;
+  }
+
+  return (
+    <div css={containerStyle}>
+      <div css={userInfoContainerStyle}>
+        <div
+          css={{
+            width: '100px',
+            height: '100px',
+            borderRadius: '100%',
+            backgroundColor: '#d9d9d9',
+            position: 'relative'
+          }}>
+          <Settings
+            css={{ position: 'absolute', right: '-10px', bottom: '0' }}
+          />
+        </div>
+
+        <div css={userInfoBoxStyle}>
+          <div css={id}>아이디 : {user?.email || 'N/A'}</div>
+          <div css={nickName}>
+            닉네임
+            <div css={inputContainer}>
+              <input css={inputStyle} value={user?.nickname || ''} readOnly />
+              <PencilLine
+                css={{
+                  position: 'absolute',
+                  right: '6px',
+                  top: '50%',
+                  transform: 'translateY(-50%)'
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div css={contentContainerStyle}>
+        <ContentCard
+          item={{
+            title: '그룹 수',
+            value: 7, // 실제 값이 있다면 API에서 가져올 것
+            Icon: <GroupIcon width={30} />
+          }}
+        />
+        <ContentCard
+          item={{
+            title: '받은 투표',
+            value: 3, // 실제 값이 있다면 API에서 가져올 것
+            Icon: <VoteIcon width={30} />
+          }}
+        />
+      </div>
+
+      <button css={buttonStyle} onClick={logout}>
+        로그아웃
+      </button>
     </div>
   );
 }
@@ -65,64 +134,6 @@ const unitStyle = css`
   font-size: 40px;
   font-weight: 500;
 `;
-
-function Mypage() {
-  return (
-    <div css={containerStyle}>
-      <div css={userInfoContainerStyle}>
-        <div
-          css={{
-            width: '100px',
-            height: '100px',
-            borderRadius: '100%',
-            backgroundColor: '#d9d9d9',
-            position: 'relative'
-          }}>
-          <Settings
-            css={{ position: 'absolute', right: '-10px', bottom: '0' }}
-          />
-        </div>
-
-        <div css={userInfoBoxStyle}>
-          <div css={id}>아이디 : zikzik@gmail.com</div>
-          <div css={nickName}>
-            닉네임
-            <div css={inputContainer}>
-              <input css={inputStyle} />
-              <PencilLine
-                css={{
-                  position: 'absolute',
-                  right: '6px',
-                  top: '50%',
-                  transform: 'translateY(-50%)'
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div css={contentContainerStyle}>
-        <ContentCard
-          item={{
-            title: '그룹 수',
-            value: 7,
-            Icon: <GroupIcon width={30} />
-          }}
-        />
-        <ContentCard
-          item={{
-            title: '받은 투표',
-            value: 3,
-            Icon: <VoteIcon width={30} />
-          }}
-        />
-      </div>
-
-      <button css={buttonStyle}>로그아웃</button>
-    </div>
-  );
-}
 
 const containerStyle = css`
   display: flex;

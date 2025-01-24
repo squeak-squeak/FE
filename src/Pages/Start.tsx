@@ -6,9 +6,11 @@ import HamsterIcon from '@/assets/svg/hamster.svg';
 import KakaoIcon from '@/assets/svg/kakao-button.svg';
 import NaverIcon from '@/assets/svg/naver-button.svg';
 import GoogleIcon from '@/assets/svg/google-button.svg';
+import NaverLogin from '@/Auth/NaverLogin';
 
 const Start = () => {
   const navigate = useNavigate();
+  const { handleLogin } = NaverLogin();
 
   const handleNavigate = () => {
     navigate('/home');
@@ -114,7 +116,7 @@ const Start = () => {
       </div>
       <div css={loginButtonsStyle}>
         <KakaoIcon css={loginButtonStyle} />
-        <NaverIcon css={loginButtonStyle} />
+        <NaverIcon css={loginButtonStyle} onClick={handleLogin} />
         <GoogleIcon css={loginButtonStyle} />
       </div>
     </>
