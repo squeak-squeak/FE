@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import { Settings, PencilLine } from 'lucide-react';
 import GroupIcon from '@/assets/svg/Group.svg';
 import VoteIcon from '@/assets/svg/Vote.svg';
-import { useAuth } from '@/Auth/AuthContext';
+import { useAuth } from '@/Pages/Context/AuthContext';
 
 interface ContentCardProps {
   title: string;

@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from '@/Components/Common/Layout';
 import Start from '@/Pages/Start';
 import Home from '@/Pages/Home';
-import AuthCallback from '@/Auth/NaverCallback';
-import Join from '@/Auth/Join';
+import AuthCallback from '@/Pages/Auth/NaverCallback';
+import Join from '@/Pages/Auth/Join';
 import GroupList from '@/Pages/GroupList';
 import VoteResult from './Pages/VoteResult';
 import GroupDetail from './Pages/GroupDetail';
@@ -14,7 +14,7 @@ import ActiveVotes from '@/Pages/ActiveVotes';
 import FinishedVotes from '@/Pages/FinishedVotes';
 import Mypage from '@/Pages/Mypage';
 import Notification from '@/Pages/Notification';
-import { AuthProvider } from '@/Auth/AuthContext';
+import { AuthProvider } from '@/Pages/Context/AuthContext';
 
 const App = () => {
   return (
@@ -24,8 +24,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Start />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/auth/callback" element={<Join />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
-            <Route path="/join" element={<Join />} />
             <Route path="/group-list" element={<GroupList />} />
             <Route path="/vote-result" element={<VoteResult />} />
             <Route path="/group-detail" element={<GroupDetail />} />

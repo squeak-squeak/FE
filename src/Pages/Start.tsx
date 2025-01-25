@@ -6,96 +6,25 @@ import HamsterIcon from '@/assets/svg/hamster.svg';
 import KakaoIcon from '@/assets/svg/kakao-button.svg';
 import NaverIcon from '@/assets/svg/naver-button.svg';
 import GoogleIcon from '@/assets/svg/google-button.svg';
-import NaverLogin from '@/Auth/NaverLogin';
 
 const Start = () => {
   const navigate = useNavigate();
-  const { handleLogin } = NaverLogin();
 
   const handleNavigate = () => {
     navigate('/home');
   };
 
-  const headerStyle = css`
-    width: 100%;
-    margin-bottom: 20px;
-    padding-left: 20px;
-    padding-top: 20px;
-    font-weight: bold;
-  `;
+  const NAVER_CLIENT_ID = import.meta.env.VITE_NAVER_CLIENT_ID;
+  const REDIRECT_URI = import.meta.env.VITE_NAVER_REDIRECT_URI;
+  const STATE = Math.random().toString(36).substring(2, 15); // CSRF 방지용 state 생성
 
-  const headerTopStyle = css`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 24px;
-    color: black;
-  `;
+  const handleLogin = () => {
+    console.log('네이버 로그인 버튼 클릭됨');
 
-  const cheeseImageStyle = css`
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-  `;
-
-  const headerBottomStyle = css`
-    font-size: 18px;
-    color: black;
-    margin-top: 8px;
-  `;
-
-  const highlightTextStyle = css`
-    font-size: 40px;
-    font-weight: bold;
-    color: #ffcb10;
-    cursor: pointer;
-    ${theme.typo.Logo}
-  `;
-
-  const imageContainerStyle = css`
-    margin: 40px 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  `;
-
-  const hamsterImageStyle = css`
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    object-fit: contain;
-  `;
-
-  const loginButtonsStyle = css`
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    align-items: center;
-    margin-top: 20%;
-
-    @media (max-width: 768px) {
-      gap: 10px;
-    }
-
-    @media (max-width: 480px) {
-      gap: 8px;
-    }
-  `;
-
-  const loginButtonStyle = css`
-    width: 60%;
-    max-width: 300px;
-    cursor: pointer;
-
-    @media (max-width: 768px) {
-      width: 80%;
-    }
-
-    @media (max-width: 480px) {
-      width: 90%;
-    }
-  `;
+    localStorage.setItem('naver_state', STATE);
+    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}`;
+    window.location.href = NAVER_AUTH_URL;
+  };
 
   return (
     <>
@@ -122,5 +51,86 @@ const Start = () => {
     </>
   );
 };
+
+const headerStyle = css`
+  width: 100%;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
+  font-weight: bold;
+`;
+
+const headerTopStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  color: black;
+`;
+
+const cheeseImageStyle = css`
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+`;
+
+const headerBottomStyle = css`
+  font-size: 18px;
+  color: black;
+  margin-top: 8px;
+`;
+
+const highlightTextStyle = css`
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffcb10;
+  cursor: pointer;
+  ${theme.typo.Logo}
+`;
+
+const imageContainerStyle = css`
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const hamsterImageStyle = css`
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: contain;
+`;
+
+const loginButtonsStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  align-items: center;
+  margin-top: 20%;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 8px;
+  }
+`;
+
+const loginButtonStyle = css`
+  width: 60%;
+  max-width: 300px;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+  }
+`;
 
 export default Start;
