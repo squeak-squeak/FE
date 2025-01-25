@@ -97,6 +97,11 @@ const Start = () => {
     }
   `;
 
+  const Rest_api_key = '977a86566d3d940724d7b6a6cec0fae3'; //REST API KEY
+  const redirect_uri = 'http://localhost:5173/redirect/kakao'; //Redirect URI
+  // oauth 요청 URL
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+
   return (
     <>
       <div css={headerStyle}>
@@ -115,8 +120,12 @@ const Start = () => {
         <HamsterIcon css={hamsterImageStyle} />
       </div>
       <div css={loginButtonsStyle}>
-        <KakaoIcon css={loginButtonStyle} />
-        <NaverIcon css={loginButtonStyle} onClick={handleLogin} />
+        <KakaoIcon
+          onClick={() => window.open(kakaoURL)}
+          css={loginButtonStyle}
+        />
+
+        <NaverIcon css={loginButtonStyle} />
         <GoogleIcon css={loginButtonStyle} />
       </div>
     </>

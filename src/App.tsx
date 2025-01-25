@@ -16,6 +16,9 @@ import Mypage from '@/Pages/Mypage';
 import Notification from '@/Pages/Notification';
 import { AuthProvider } from '@/Auth/AuthContext';
 
+/* oAuth 페이지 리다이렉트 */
+import KakaoRedirect from '@/Pages/oAuth/KakaoRedirect';
+
 const App = () => {
   return (
     <AuthProvider>
