@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '@/Style/theme';
 import CheeseIcon from '@/assets/svg/cheese.svg';
@@ -6,23 +7,38 @@ import HamsterIcon from '@/assets/svg/hamster.svg';
 import KakaoIcon from '@/assets/svg/kakao-button.svg';
 import NaverIcon from '@/assets/svg/naver-button.svg';
 import GoogleIcon from '@/assets/svg/google-button.svg';
+import { useAuth } from '@/Pages/Context/AuthContext';
 
 const Start = () => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      console.log('이미 로그인된 사용자, 마이페이지로 이동');
+      navigate('/mypage', { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleNavigate = () => {
     navigate('/home');
   };
 
   const NAVER_CLIENT_ID = import.meta.env.VITE_NAVER_CLIENT_ID;
-  const REDIRECT_URI = import.meta.env.VITE_NAVER_REDIRECT_URI;
+  const LOGIN_REDIRECT_URI = import.meta.env.VITE_NAVER_REDIRECT_URI;
   const STATE = Math.random().toString(36).substring(2, 15); // CSRF 방지용 state 생성
 
   const handleLogin = () => {
+    if (!NAVER_CLIENT_ID || !LOGIN_REDIRECT_URI) {
+      console.error('네이버 로그인 환경 변수가 설정되지 않았습니다.');
+      alert('네이버 로그인 설정이 올바르지 않습니다.');
+      return;
+    }
+
     console.log('네이버 로그인 버튼 클릭됨');
 
     localStorage.setItem('naver_state', STATE);
-    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}`;
+    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&state=${STATE}&redirect_uri=${LOGIN_REDIRECT_URI}`;
     window.location.href = NAVER_AUTH_URL;
   };
 

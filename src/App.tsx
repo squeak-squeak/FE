@@ -2,11 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from '@/Components/Common/Layout';
 import Start from '@/Pages/Start';
 import Home from '@/Pages/Home';
-import AuthCallback from '@/Pages/Auth/NaverCallback';
-import Join from '@/Pages/Auth/Join';
+import NaverRedirect from '@/Pages/Auth/NaverRedirect';
 import GroupList from '@/Pages/GroupList';
-import VoteResult from './Pages/VoteResult';
-import GroupDetail from './Pages/GroupDetail';
+import VoteResult from '@/Pages/VoteResult';
+import GroupDetail from '@/Pages/GroupDetail';
 import NewVote from '@/Pages/NewVote';
 import NewGroup from '@/Pages/NewGroup';
 import Vote from '@/Pages/Vote';
@@ -18,14 +17,14 @@ import { AuthProvider } from '@/Pages/Context/AuthContext';
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <Layout>
           <Routes>
             <Route path="/" element={<Start />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/auth/callback" element={<Join />} />
-            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/auth/callback" element={<NaverRedirect />} />
+            <Route path="/auth/signup-callback" element={<NaverRedirect />} />
             <Route path="/group-list" element={<GroupList />} />
             <Route path="/vote-result" element={<VoteResult />} />
             <Route path="/group-detail" element={<GroupDetail />} />
@@ -38,8 +37,8 @@ const App = () => {
             <Route path="/notification" element={<Notification />} />
           </Routes>
         </Layout>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 };
 

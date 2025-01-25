@@ -5,6 +5,7 @@ import { Settings, PencilLine } from 'lucide-react';
 import GroupIcon from '@/assets/svg/Group.svg';
 import VoteIcon from '@/assets/svg/Vote.svg';
 import { useAuth } from '@/Pages/Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 interface ContentCardProps {
   title: string;
@@ -33,12 +34,13 @@ function ContentCard({ item }: { item: ContentCardProps }) {
 
 function Mypage() {
   const { user, isLoggedIn, logout } = useAuth();
+  const navigate = useNavigate();
 
-  // 로그인하지 않은 사용자는 리다이렉트
-  if (!isLoggedIn) {
-    window.location.href = '/';
-    return null;
-  }
+  React.useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/', { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div css={containerStyle}>
