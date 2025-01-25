@@ -13,14 +13,22 @@ const Layout = ({ children }: LayoutProps) => {
   const isHome = loc.pathname === '/home';
 
   // header가 나오지 않는 경로는 배열에 추가
-  const isHeaderVisible = ['/', '/vote', '/notification'].includes(
-    loc.pathname
-  );
+  const isHeaderVisible = [
+    '/',
+    '/vote',
+    '/notification',
+    '/auth/callback',
+    '/auth/signup-callback'
+  ].includes(loc.pathname);
 
   // BottomNav가 보이지 않는 경로 설정
-  const isBottomNavVisible = !['/', '/vote', '/notification'].includes(
-    loc.pathname
-  );
+  const isBottomNavVisible = ![
+    '/',
+    '/vote',
+    '/notification',
+    '/auth/callback',
+    '/auth/signup-callback'
+  ].includes(loc.pathname);
 
   const containerStyle = css`
     width: 100%;
