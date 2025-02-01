@@ -1,101 +1,59 @@
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GroupProfileIcon from '@/assets/svg/GroupProfile.svg';
 import { Search } from 'lucide-react';
 import BackHead from '@/Components/Common/BackHead';
-
-interface GroupCardProps {
-  groupImage: React.ReactNode;
-  groupName: string;
-  isOwner: boolean; // 방장 여부
-  onClick: () => void; // 클릭 핸들러
-}
-
-const GroupCard = ({ groupImage, groupName, onClick }: GroupCardProps) => (
-  <div css={groupCardStyle} onClick={onClick}>
-    {typeof groupImage === 'string' ? (
-      <img src={groupImage} alt={groupName} />
-    ) : (
-      groupImage
-    )}
-    <span>{groupName}</span>
-  </div>
-);
+import GroupCard from '@/Components/GroupCard';
 
 const GroupList = () => {
   const navigate = useNavigate();
-  const [filter, setFilter] = useState('all');
+
+  // 드롭다운 기본값은 "ALL", 검색어는 빈 문자열
+  const [filter, setFilter] = useState('ALL');
   const [searchTerm, setSearchTerm] = useState('');
+  const [groups, setGroups] = useState<any[]>([]);
 
-  const groups = [
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명1',
-      isOwner: true
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명2',
-      isOwner: false
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명3',
-      isOwner: true
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명4',
-      isOwner: false
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명5',
-      isOwner: false
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명6',
-      isOwner: true
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명7',
-      isOwner: false
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명8',
-      isOwner: true
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명9',
-      isOwner: false
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명10',
-      isOwner: true
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명11',
-      isOwner: true
-    },
-    {
-      groupImage: <GroupProfileIcon width={50} height={50} />,
-      groupName: '그룹명12',
-      isOwner: true
-    }
-  ];
+  // filter와 searchTerm이 변경될 때마다 API 호출
+  useEffect(() => {
+    const fetchGroups = async () => {
+      try {
+        const token = localStorage.getItem('jwt_token') || '';
+        const authHeader = token.startsWith('Bearer ')
+          ? token
+          : `Bearer ${token}`;
 
-  const filteredGroups = groups.filter((group) => {
-    const matchesFilter = filter === 'all' || group.isOwner;
-    const matchesSearch = group.groupName.includes(searchTerm);
-    return matchesFilter && matchesSearch;
-  });
+        // 검색어 앞뒤 공백 제거
+        const keywordParam = searchTerm.trim();
+        const queryParams = new URLSearchParams();
+        queryParams.append('type', filter);
+        queryParams.append('keyword', keywordParam);
+
+        // Vite proxy rewrite 옵션 때문에 /api가 제거되므로
+        // 호출 URL에 /api를 두 번 사용하여 최종 URL이 /api/groups/search가 되도록 함
+        const response = await fetch(
+          `/api/api/groups/search?${queryParams.toString()}`,
+          {
+            headers: {
+              accept: '*/*',
+              Authorization: authHeader
+            }
+          }
+        );
+
+        const data = await response.json();
+        if (response.ok && data.success) {
+          setGroups(data.response);
+        } else {
+          console.error(data.error);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchGroups();
+  }, [filter, searchTerm]);
 
   return (
     <div css={pageWrapperStyle}>
@@ -107,28 +65,33 @@ const GroupList = () => {
               type="text"
               placeholder="그룹명을 검색하세요"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)} // 검색어 변경
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button>
               <Search />
             </button>
           </div>
-
           <div css={dropdownStyle}>
             <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-              <option value="all">전체</option>
-              <option value="owner">내가 방장인 그룹</option>
+              <option value="ALL">전체</option>
+              <option value="OWNER">내가 방장인 그룹</option>
             </select>
           </div>
         </div>
 
         <div css={gridStyle}>
-          {filteredGroups.map((group, index) => (
+          {groups.map((group, index) => (
             <GroupCard
               key={index}
-              groupImage={group.groupImage}
-              groupName={group.groupName}
-              isOwner={group.isOwner}
+              // API에서 image가 빈 문자열이면 기본 아이콘을 사용
+              groupImage={
+                group.image && group.image !== '' ? (
+                  group.image
+                ) : (
+                  <GroupProfileIcon width={50} height={50} />
+                )
+              }
+              groupName={group.name}
               onClick={() => navigate('/group-detail')}
             />
           ))}
@@ -149,11 +112,9 @@ const pageWrapperStyle = css`
   overflow: hidden;
   overflow-y: auto;
   height: calc(100vh - 100px);
-
   &::-webkit-scrollbar {
     display: none;
   }
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 `;
@@ -194,7 +155,6 @@ const dropdownStyle = css`
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
-
   select {
     width: 150px;
     padding: 8px;
@@ -208,28 +168,6 @@ const gridStyle = css`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
-`;
-
-const groupCardStyle = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  background: white;
-  border: 2px solid #efefef;
-  border-radius: 10px;
-  cursor: pointer;
-  img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: #e0e0e0;
-  }
-  span {
-    margin-top: 10px;
-    color: black;
-  }
 `;
 
 const addButtonStyle = css`
