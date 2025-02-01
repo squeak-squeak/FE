@@ -15,8 +15,8 @@ const Start = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      console.log('이미 로그인된 사용자, 마이페이지로 이동');
-      navigate('/mypage', { replace: true });
+      console.log('이미 로그인된 사용자, 홈으로 이동');
+      navigate('/home', { replace: true });
     }
   }, [isLoggedIn, navigate]);
 

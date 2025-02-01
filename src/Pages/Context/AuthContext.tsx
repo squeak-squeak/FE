@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 interface User {
+  id: number; // memberId
   email: string;
   nickname: string;
 }
@@ -39,23 +40,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('jwt_token');
+    const currentPath = window.location.pathname;
 
-    if (token) {
-      navigate('/mypage', { replace: true });
-    } else if (
-      !token &&
-      window.location.pathname !== '/auth/callback' &&
-      window.location.pathname !== '/auth/signup-callback'
-    ) {
+    // 인증 관련 페이지(예: 로그인 페이지)나 public 페이지에 있는 경우
+    const publicPaths = ['/', '/auth/callback', '/auth/signup-callback'];
+
+    if (!token && !publicPaths.includes(currentPath)) {
+      // 토큰이 없는데 보호된 페이지에 접근하려 할 때 로그인 페이지로 리다이렉트
       navigate('/', { replace: true });
+      return;
     }
+
+    if (token && publicPaths.includes(currentPath)) {
+      // 토큰이 있고, 현재 public 페이지에 있으면 홈으로 리다이렉트
+      navigate('/home', { replace: true });
+    }
+    // 토큰이 있고, 이미 보호된 페이지(ex: /group-list 등)에 있으면 아무 작업도 하지 않음
   }, [navigate]);
 
   const login = (userData: User) => {
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
     localStorage.setItem('is_logged_in', 'true');
-    navigate('/mypage', { replace: true });
+    navigate('/home', { replace: true });
   };
 
   const logout = () => {

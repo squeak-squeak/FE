@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PhoneNumberForm from '@/Components/PhoneNumberForm';
 import { css } from '@emotion/react';
+import { useAuth } from '@/Pages/Context/AuthContext';
 
 const NaverRedirect = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [isChecking, setIsChecking] = useState(true);
   const [needsSignup, setNeedsSignup] = useState(false);
@@ -13,8 +15,8 @@ const NaverRedirect = () => {
     setIsChecking(true);
 
     const urlParams = new URLSearchParams(window.location.search);
-    let code = urlParams.get('code');
-    let state = urlParams.get('state');
+    const code = urlParams.get('code');
+    const state = urlParams.get('state');
     const storedState = localStorage.getItem('naver_state');
 
     if (!code || !state || state !== storedState) {
@@ -42,11 +44,29 @@ const NaverRedirect = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log('백엔드 응답 데이터:', data);
+
           localStorage.setItem('jwt_token', data.response.accessToken);
 
-          console.log('로그인 성공, 마이페이지로 이동');
+          if (data.response.member) {
+            login({
+              id: data.response.member.id,
+              email: data.response.member.email,
+              nickname: data.response.member.nickname
+            });
+          } else if (data.response.memberId) {
+            login({
+              id: data.response.memberId,
+              email: data.response.email || '',
+              nickname: data.response.nickname || ''
+            });
+          } else {
+            console.error('회원 정보가 응답에 없습니다.');
+          }
+
+          console.log('로그인 성공, 홈으로 이동');
           setTimeout(() => {
-            navigate('/mypage', { replace: true });
+            navigate('/home', { replace: true });
           }, 100);
         } else {
           setNeedsSignup(true);
@@ -59,7 +79,7 @@ const NaverRedirect = () => {
     };
 
     checkUser();
-  }, [navigate]);
+  }, [navigate, login]);
 
   const handleSignupRedirect = (phoneNumber: string) => {
     const newState = Math.random().toString(36).substring(2, 15);

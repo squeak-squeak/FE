@@ -12,114 +12,6 @@ interface GroupCardProps {
   onClick: () => void; // 클릭 핸들러
 }
 
-const pageWrapperStyle = css`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  overflow-y: auto;
-  height: calc(100vh - 100px);
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-`;
-
-const contentWrapperStyle = css`
-  flex: 1;
-  padding: 10px 20px;
-  box-sizing: border-box;
-`;
-
-const searchContainerStyle = css`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-`;
-
-const searchBarStyle = css`
-  display: flex;
-  align-items: center;
-  border: 3px solid black;
-  border-radius: 50px;
-  padding: 8px 10px;
-  input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 14px;
-  }
-  button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
-`;
-
-const dropdownStyle = css`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-
-  select {
-    width: 150px;
-    padding: 8px;
-    border: 2px solid #d9d9d9;
-    border-radius: 20px;
-    font-size: 14px;
-  }
-`;
-
-const gridStyle = css`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-`;
-
-const groupCardStyle = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  background: white;
-  border: 2px solid #efefef;
-  border-radius: 10px;
-  cursor: pointer;
-  img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: #e0e0e0;
-  }
-  span {
-    margin-top: 10px;
-    color: black;
-  }
-`;
-
-const addButtonStyle = css`
-  position: fixed;
-  bottom: 100px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  background-color: #ffcb10;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  color: white;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  z-index: 10;
-`;
-
 const GroupCard = ({ groupImage, groupName, onClick }: GroupCardProps) => (
   <div css={groupCardStyle} onClick={onClick}>
     {typeof groupImage === 'string' ? (
@@ -243,9 +135,119 @@ const GroupList = () => {
         </div>
       </div>
 
-      <div css={addButtonStyle}>+</div>
+      <div css={addButtonStyle} onClick={() => navigate('/new-group')}>
+        +
+      </div>
     </div>
   );
 };
+
+const pageWrapperStyle = css`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  height: calc(100vh - 100px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+`;
+
+const contentWrapperStyle = css`
+  flex: 1;
+  padding: 10px 20px;
+  box-sizing: border-box;
+`;
+
+const searchContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`;
+
+const searchBarStyle = css`
+  display: flex;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 50px;
+  padding: 8px 10px;
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+  button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+`;
+
+const dropdownStyle = css`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+
+  select {
+    width: 150px;
+    padding: 8px;
+    border: 2px solid #d9d9d9;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+`;
+
+const gridStyle = css`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+`;
+
+const groupCardStyle = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background: white;
+  border: 2px solid #efefef;
+  border-radius: 10px;
+  cursor: pointer;
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #e0e0e0;
+  }
+  span {
+    margin-top: 10px;
+    color: black;
+  }
+`;
+
+const addButtonStyle = css`
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #ffcb10;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 10;
+`;
 
 export default GroupList;
