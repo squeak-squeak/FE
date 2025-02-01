@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Copy } from 'lucide-react';
 
 const modalWrapperStyle = css`
@@ -95,8 +94,6 @@ const InvitationModal: React.FC<GroupInvitationModalProps> = ({
   inviteCode,
   onClose
 }) => {
-  const navigate = useNavigate();
-
   const handleCopyCode = () => {
     navigator.clipboard.writeText(inviteCode);
     alert('초대 코드가 복사되었습니다!');
@@ -116,12 +113,7 @@ const InvitationModal: React.FC<GroupInvitationModalProps> = ({
               <Copy width={20} />
             </button>
           </div>
-          <button
-            css={confirmButtonStyle}
-            onClick={() => {
-              onClose();
-              navigate(-1);
-            }}>
+          <button css={confirmButtonStyle} onClick={onClose}>
             확인
           </button>
         </div>

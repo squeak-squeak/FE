@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { theme } from '@/Style/theme';
 import { useAuth } from '@/Pages/Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import InvitationModal from '@/Components/InvitationModal';
 
 function NewGroup() {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ function NewGroup() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [inviteCode, setInviteCode] = useState<string>('');
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleButtonClick = () => {
     fileInputRef.current?.click();
@@ -83,7 +86,9 @@ function NewGroup() {
 
       const data = await response.json();
       if (response.ok && data.success) {
-        navigate('/group-list');
+        // 그룹 생성이 성공하면 초대 코드를 받아 모달을 띄우기
+        setInviteCode(data.response.inviteCode);
+        setShowModal(true);
       } else {
         setError(data.error || '그룹 생성에 실패했습니다.');
       }
@@ -93,6 +98,12 @@ function NewGroup() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // 모달을 닫을 때 /group-list로 이동
+  const handleCloseModal = () => {
+    setShowModal(false);
+    navigate('/group-list');
   };
 
   return (
@@ -163,6 +174,14 @@ function NewGroup() {
           {loading ? '생성 중...' : '그룹 생성하기'}
         </button>
       </div>
+
+      {showModal && (
+        <InvitationModal
+          groupName={groupName}
+          inviteCode={inviteCode}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 }
