@@ -68,21 +68,18 @@ function NewGroup() {
         ? token
         : `Bearer ${token}`;
 
-      const response = await fetch(
-        `http://localhost:8080/api/groups/create?memberId=${memberId}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authHeader
-          },
-          body: JSON.stringify({
-            name: groupName,
-            image: thumbnail || '',
-            description: desc
-          })
-        }
-      );
+      const response = await fetch(`/api/groups/create?memberId=${memberId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authHeader
+        },
+        body: JSON.stringify({
+          name: groupName,
+          image: thumbnail || '',
+          description: desc
+        })
+      });
 
       const data = await response.json();
       if (response.ok && data.success) {

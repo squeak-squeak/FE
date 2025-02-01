@@ -29,10 +29,8 @@ const GroupList = () => {
         queryParams.append('type', filter);
         queryParams.append('keyword', keywordParam);
 
-        // Vite proxy rewrite 옵션 때문에 /api가 제거되므로
-        // 호출 URL에 /api를 두 번 사용하여 최종 URL이 /api/groups/search가 되도록 함
         const response = await fetch(
-          `/api/api/groups/search?${queryParams.toString()}`,
+          `/api/groups/search?${queryParams.toString()}`,
           {
             headers: {
               accept: '*/*',
