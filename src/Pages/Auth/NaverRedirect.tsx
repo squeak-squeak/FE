@@ -42,7 +42,7 @@ const NaverRedirect = () => {
 
         if (response.ok) {
           const data = await response.json();
-          localStorage.setItem('jwt_token', data.accessToken);
+          localStorage.setItem('jwt_token', data.response.accessToken);
 
           console.log('로그인 성공, 마이페이지로 이동');
           setTimeout(() => {
