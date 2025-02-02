@@ -26,6 +26,8 @@ const Start = () => {
 
   const NAVER_CLIENT_ID = import.meta.env.VITE_NAVER_CLIENT_ID;
   const LOGIN_REDIRECT_URI = import.meta.env.VITE_NAVER_REDIRECT_URI;
+  const KAKAO_CLIENT_ID = import.meta.env.VITE_KAKAO_CLIENT_ID;
+  const KAKAO_REDIRECT_URL = import.meta.env.VITE_KAKAO_REDIRECT_URI;
   const STATE = Math.random().toString(36).substring(2, 15); // CSRF 방지용 state 생성
 
   const handleLogin = () => {
@@ -40,6 +42,16 @@ const Start = () => {
     localStorage.setItem('naver_state', STATE);
     const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&state=${STATE}&redirect_uri=${LOGIN_REDIRECT_URI}`;
     window.location.href = NAVER_AUTH_URL;
+  };
+
+  const handleKakaoLogin = () => {
+    if (!KAKAO_CLIENT_ID || !KAKAO_REDIRECT_URL) {
+      console.error('카카오 로그인 환경 변수가 설정되지 않았습니다.');
+      alert('카카오 로그인 설정이 올바르지 않습니다.');
+      return;
+    }
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
+    window.location.href = kakaoURL;
   };
 
   return (
@@ -60,7 +72,7 @@ const Start = () => {
         <HamsterIcon css={hamsterImageStyle} />
       </div>
       <div css={loginButtonsStyle}>
-        <KakaoIcon css={loginButtonStyle} />
+        <KakaoIcon css={loginButtonStyle} onClick={handleKakaoLogin} />
         <NaverIcon css={loginButtonStyle} onClick={handleLogin} />
         <GoogleIcon css={loginButtonStyle} />
       </div>

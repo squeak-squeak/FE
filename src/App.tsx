@@ -14,6 +14,7 @@ import FinishedVotes from '@/Pages/FinishedVotes';
 import Mypage from '@/Pages/Mypage';
 import Notification from '@/Pages/Notification';
 import { AuthProvider } from '@/Pages/Context/AuthContext';
+import KakaoRedirect from './Pages/Auth/KakaoRedirect';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/auth/callback" element={<NaverRedirect />} />
             <Route path="/auth/signup-callback" element={<NaverRedirect />} />
+            <Route path="/auth/kakao" element={<KakaoRedirect />} />
             <Route path="/group-list" element={<GroupList />} />
             <Route path="/vote-result" element={<VoteResult />} />
             <Route path="/group-detail" element={<GroupDetail />} />

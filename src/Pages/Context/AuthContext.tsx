@@ -43,7 +43,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const currentPath = window.location.pathname;
 
     // 인증 관련 페이지(예: 로그인 페이지)나 public 페이지에 있는 경우
-    const publicPaths = ['/', '/auth/callback', '/auth/signup-callback'];
+    const publicPaths = [
+      '/',
+      '/auth/callback',
+      '/auth/signup-callback',
+      '/auth/kakao'
+    ];
 
     if (!token && !publicPaths.includes(currentPath)) {
       // 토큰이 없는데 보호된 페이지에 접근하려 할 때 로그인 페이지로 리다이렉트
