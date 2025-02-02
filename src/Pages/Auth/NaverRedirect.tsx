@@ -30,7 +30,7 @@ const NaverRedirect = () => {
       try {
         const isSignupFlow =
           window.location.pathname.includes('signup-callback');
-        const apiUrl = isSignupFlow ? '/api/join' : '/api/login';
+        const apiUrl = isSignupFlow ? '/api/member/join' : '/api/member/login';
 
         const response = await fetch(apiUrl, {
           method: 'POST',

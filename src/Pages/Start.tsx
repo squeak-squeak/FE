@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '@/Style/theme';
 import CheeseIcon from '@/assets/svg/cheese.svg';
-import HamsterIcon from '@/assets/svg/hamster.svg';
+import HamsterIcon from '@/assets/svg/logo.svg';
 import KakaoIcon from '@/assets/svg/kakao-button.svg';
 import NaverIcon from '@/assets/svg/naver-button.svg';
 import GoogleIcon from '@/assets/svg/google-button.svg';

@@ -172,7 +172,7 @@ const Home = () => {
         `}>
         <div css={greetingStyle}>000님, 안녕하세요!</div>
         <div css={bannerStyle}>
-          <HomeIcon width={140} />
+          <HomeIcon width={140} height={140} />
           <div css={contentAndButtonStyle}>
             <div css={contentStyle}>
               <p>누구를 찍어볼까?</p>
