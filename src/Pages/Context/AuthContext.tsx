@@ -47,7 +47,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       '/',
       '/auth/callback',
       '/auth/signup-callback',
-      '/auth/kakao'
+      '/auth/kakao',
+      '/auth/google'
     ];
 
     if (!token && !publicPaths.includes(currentPath)) {

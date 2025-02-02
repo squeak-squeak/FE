@@ -28,6 +28,8 @@ const Start = () => {
   const LOGIN_REDIRECT_URI = import.meta.env.VITE_NAVER_REDIRECT_URI;
   const KAKAO_CLIENT_ID = import.meta.env.VITE_KAKAO_CLIENT_ID;
   const KAKAO_REDIRECT_URL = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  const GOOGLE_REDIRECT_URL = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
   const STATE = Math.random().toString(36).substring(2, 15); // CSRF 방지용 state 생성
 
   const handleLogin = () => {
@@ -54,6 +56,17 @@ const Start = () => {
     window.location.href = kakaoURL;
   };
 
+  const handleGoogleLogin = () => {
+    if (!GOOGLE_CLIENT_ID || !GOOGLE_REDIRECT_URL) {
+      console.error('카카오 로그인 환경 변수가 설정되지 않았습니다.');
+      alert('카카오 로그인 설정이 올바르지 않습니다.');
+      return;
+    }
+    const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URL}&response_type=code&scope=email+profile`;
+
+    window.location.href = googleURL;
+  };
+
   return (
     <>
       <div css={headerStyle}>
@@ -74,7 +87,7 @@ const Start = () => {
       <div css={loginButtonsStyle}>
         <KakaoIcon css={loginButtonStyle} onClick={handleKakaoLogin} />
         <NaverIcon css={loginButtonStyle} onClick={handleLogin} />
-        <GoogleIcon css={loginButtonStyle} />
+        <GoogleIcon css={loginButtonStyle} onClick={handleGoogleLogin} />
       </div>
     </>
   );
